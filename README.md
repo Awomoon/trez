@@ -14,8 +14,8 @@ npm run dev      # http://localhost:3000
 ```
 
 ```bash
-npm run build && npm start   # production
-npm run typecheck            # tsc --noEmit
+npm run preview    # build, then serve the static output on :3000
+npm run typecheck  # tsc --noEmit
 ```
 
 ---
@@ -117,10 +117,36 @@ so the seams line up and the word still reads as one continuous sweep.
 
 ## Deploying
 
-Any Next.js host works. The quickest is Vercel:
+`npm run build` produces a folder of plain static files in `out/`. There is no
+server, no database and no environment variables — so any static host works.
+
+**Vercel** (quickest):
 
 ```bash
-npx vercel
+npx vercel        # follow the login prompt, accept the defaults
 ```
 
-There are no environment variables and no backend — it's a fully static build.
+**Netlify** — drag the `out/` folder onto https://app.netlify.com/drop.
+
+**GitHub Pages** — Pages serves a project repo from a sub-path, which is the one
+case that needs the base path set:
+
+```bash
+NEXT_PUBLIC_BASE_PATH=/trez npm run build
+```
+
+Then push `out/` to a `gh-pages` branch and enable Pages in the repo settings.
+(Pages is free on public repos; private repos need a paid plan.)
+
+### One-file build
+
+```bash
+npm run build
+node scripts/inline-build.mjs dist/standalone.html
+```
+
+This folds the whole site — CSS, every JS chunk, all 13 font files and the
+favicon — into a single HTML file with no external references at all. Useful for
+hosts that only take one file, for emailing it, or for opening it straight off a
+USB stick. It is verified to make zero network requests after the document
+itself loads.
