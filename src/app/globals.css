@@ -1,0 +1,333 @@
+@import "tailwindcss";
+
+/* ========================================================================== */
+/*  THEME TOKENS                                                              */
+/* ========================================================================== */
+@theme {
+  --color-abyss: #01050e;
+  --color-deep: #03102a;
+  --color-navy: #0a1f47;
+  --color-azure: #2f7dff;
+  --color-sky: #6db4ff;
+  --color-cyan: #46e0ff;
+  --color-ice: #cfe9ff;
+  --color-frost: #eef7ff;
+  --color-violet: #7a6bff;
+
+  --font-display: var(--font-instrument), "Times New Roman", serif;
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  --ease-glass: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ========================================================================== */
+/*  BASE                                                                      */
+/* ========================================================================== */
+:root {
+  color-scheme: dark;
+  --glass-tint: 255 255 255;
+  --nav-h: 4.5rem;
+}
+
+* {
+  min-width: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--color-azure) 60%, transparent)
+    transparent;
+}
+
+body {
+  margin: 0;
+  background: var(--color-abyss);
+  color: var(--color-frost);
+  font-family: var(--font-sans);
+  font-synthesis-weight: none;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-cyan) 45%, transparent);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--color-azure) 55%, transparent);
+  border-radius: 99px;
+}
+
+/* Elements animated in by GSAP start hidden, but only when JS is running —
+   the .js flag is set by the GSAP provider so no-JS users still see content. */
+.js [data-anim] {
+  visibility: hidden;
+}
+
+/* ========================================================================== */
+/*  LIQUID GLASS                                                              */
+/*  A pane is built from four stacked truths:                                 */
+/*    1. a blurred, saturated backdrop      (the "liquid")                    */
+/*    2. a soft internal tint gradient      (the "body" of the glass)         */
+/*    3. a bright refracting rim            (the "edge")                      */
+/*    4. a moving specular streak           (the "light")                     */
+/* ========================================================================== */
+@utility glass {
+  position: relative;
+  isolation: isolate;
+  border-radius: 1.75rem;
+  background:
+    linear-gradient(
+      145deg,
+      rgb(var(--glass-tint) / 0.14) 0%,
+      rgb(var(--glass-tint) / 0.05) 38%,
+      rgb(var(--glass-tint) / 0.02) 62%,
+      rgb(70 224 255 / 0.07) 100%
+    );
+  backdrop-filter: blur(24px) saturate(185%) brightness(1.06);
+  -webkit-backdrop-filter: blur(24px) saturate(185%) brightness(1.06);
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.35),
+    inset 0 0 0 1px rgb(255 255 255 / 0.07),
+    inset 0 -18px 32px -24px rgb(70 224 255 / 0.55),
+    0 1px 1px -0.5px rgb(1 5 14 / 0.6),
+    0 18px 40px -22px rgb(1 5 14 / 0.9),
+    0 0 60px -30px rgb(47 125 255 / 0.55);
+
+  /* The refracting edge: a gradient ring drawn only in the 1px border box. */
+&::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(
+      from 210deg,
+      rgb(255 255 255 / 0.5) 0deg,
+      rgb(70 224 255 / 0.28) 70deg,
+      rgb(255 255 255 / 0.06) 150deg,
+      rgb(122 107 255 / 0.32) 230deg,
+      rgb(255 255 255 / 0.55) 310deg,
+      rgb(255 255 255 / 0.5) 360deg
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Specular sheen — a wide diagonal highlight that drifts across the pane. */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      105deg,
+      transparent 20%,
+      rgb(255 255 255 / 0.1) 42%,
+      rgb(255 255 255 / 0.22) 50%,
+      rgb(255 255 255 / 0.08) 58%,
+      transparent 78%
+    );
+    background-size: 280% 100%;
+    background-position: 140% 0;
+    opacity: 0;
+    transition:
+      opacity 0.5s var(--ease-glass),
+      background-position 1.1s var(--ease-glass);
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+/* Panes that react to the pointer. */
+@utility glass-interactive {
+  transition:
+    transform 0.6s var(--ease-glass),
+    box-shadow 0.6s var(--ease-glass),
+    background 0.6s var(--ease-glass);
+
+  &:hover,
+  &:focus-visible {
+    box-shadow:
+      inset 0 1px 0 0 rgb(255 255 255 / 0.5),
+      inset 0 0 0 1px rgb(255 255 255 / 0.1),
+      inset 0 -22px 40px -26px rgb(70 224 255 / 0.8),
+      0 1px 1px -0.5px rgb(1 5 14 / 0.6),
+      0 30px 60px -26px rgb(1 5 14 / 0.95),
+      0 0 90px -34px rgb(47 125 255 / 0.85);
+  }
+
+  &:hover::after,
+  &:focus-visible::after {
+    opacity: 1;
+    background-position: -60% 0;
+  }
+}
+
+/* True refraction where the browser supports filtering the backdrop. */
+@supports (backdrop-filter: url("#liquid-refraction")) {
+  .glass-refract {
+    backdrop-filter: url("#liquid-refraction") blur(22px) saturate(185%)
+      brightness(1.06);
+  }
+}
+
+/* ========================================================================== */
+/*  TYPOGRAPHY HELPERS                                                        */
+/* ========================================================================== */
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+}
+
+@utility shimmer-text {
+  background: linear-gradient(
+    100deg,
+    var(--color-frost) 0%,
+    var(--color-ice) 22%,
+    #ffffff 38%,
+    var(--color-cyan) 52%,
+    var(--color-sky) 68%,
+    var(--color-frost) 100%
+  );
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 9s linear infinite;
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-ice) 62%, transparent);
+}
+
+/* A hairline divider that fades at both ends. */
+@utility hairline {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255 255 255 / 0.22) 30%,
+    rgb(70 224 255 / 0.4) 50%,
+    rgb(255 255 255 / 0.22) 70%,
+    transparent
+  );
+}
+
+/* ========================================================================== */
+/*  KEYFRAMES                                                                 */
+/* ========================================================================== */
+@keyframes shimmer {
+  to {
+    background-position: -260% 0;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate3d(2%, -3%, 0) rotate(2deg);
+  }
+  66% {
+    transform: translate3d(-2%, 2%, 0) rotate(-2deg);
+  }
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    transform: scale(1) translateY(0) skewX(0deg);
+    opacity: 1;
+  }
+  25% {
+    transform: scale(1.06, 0.94) translateY(-1px) skewX(3deg);
+    opacity: 0.92;
+  }
+  50% {
+    transform: scale(0.95, 1.07) translateY(1px) skewX(-2deg);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(1.03, 0.97) translateY(-1px) skewX(1deg);
+    opacity: 0.95;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.9);
+  }
+  20% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-34px) scale(1.15);
+  }
+}
+
+/* ========================================================================== */
+/*  ACCESSIBILITY                                                             */
+/* ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js [data-anim] {
+    visibility: visible !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+  border-radius: 0.5rem;
+}
+
+/* Scroll cue: a droplet running down the hairline. */
+@keyframes drip {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(300%);
+    opacity: 0;
+  }
+}
