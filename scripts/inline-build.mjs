@@ -103,20 +103,26 @@ const MIME = {
   gif: "image/gif",
 };
 
+/* The trailing `?hash` matters: the app/icon.svg file convention adds a
+ * cache-busting query, and replacing only the path would leave that query
+ * dangling on the end of the data URI, corrupting the base64. */
 const publicRefs = new Set(
-  [...html.matchAll(/\/[\w.\-/]+\.(svg|png|jpe?g|webp|ico|gif)\b/g)].map(
-    (m) => m[0],
-  ),
+  [
+    ...html.matchAll(
+      /\/[\w.\-/]+\.(?:svg|png|jpe?g|webp|ico|gif)(?:\?[\w.\-]*)?/g,
+    ),
+  ].map((m) => m[0]),
 );
 
 for (const ref of publicRefs) {
+  const path = ref.split("?")[0];
   let bytes;
   try {
-    bytes = readFileSync(asset(ref));
+    bytes = readFileSync(asset(path));
   } catch {
     continue; // Not something we ship; leave it alone.
   }
-  const ext = ref.split(".").pop().toLowerCase();
+  const ext = path.split(".").pop().toLowerCase();
   const mime = MIME[ext] ?? "application/octet-stream";
   html = html.replaceAll(
     ref,

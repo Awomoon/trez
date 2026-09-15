@@ -30,9 +30,10 @@ export const metadata: Metadata = {
     description: site.meta.description,
     type: "website",
   },
-  icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
-  },
+  // The favicon comes from the `app/icon.svg` file convention rather than an
+  // explicit `icons` entry: Next only rewrites file-convention icons for
+  // `basePath`, so a hard-coded "/icon.svg" would 404 under a sub-path host
+  // such as GitHub Pages.
 };
 
 export const viewport: Viewport = {

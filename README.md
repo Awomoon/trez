@@ -128,15 +128,18 @@ npx vercel        # follow the login prompt, accept the defaults
 
 **Netlify** — drag the `out/` folder onto https://app.netlify.com/drop.
 
-**GitHub Pages** — Pages serves a project repo from a sub-path, which is the one
-case that needs the base path set:
+**GitHub Pages** — already wired up. `.github/workflows/deploy.yml` builds and
+publishes on every push, and enables the Pages site itself on the first run, so
+there is nothing to click. Pages serves a project repo from a sub-path, so the
+workflow passes that prefix to the build:
 
 ```bash
-NEXT_PUBLIC_BASE_PATH=/trez npm run build
+NEXT_PUBLIC_BASE_PATH=/trez npm run build   # what CI runs, if you want it locally
 ```
 
-Then push `out/` to a `gh-pages` branch and enable Pages in the repo settings.
-(Pages is free on public repos; private repos need a paid plan.)
+The prefix comes from `actions/configure-pages`, so it keeps working if the repo
+is renamed or moved to a custom domain. (Pages is free on public repos; private
+repos need a paid plan.)
 
 ### One-file build
 
