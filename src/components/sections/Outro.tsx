@@ -7,16 +7,56 @@ import { site } from "@/config/site";
 /**
  * The last thing on the page: one more song to see her out.
  *
- * A browser will not start audio on its own — autoplay without a user gesture
- * is blocked, and Spotify's embed needs a click regardless. So rather than
- * pretending it plays by itself, reaching the end *stages* it: the panel rises,
- * a ring pulses around the play hint, and the instruction is impossible to
- * miss. She presses play once and the song carries her out.
+ * Two facts shape this section.
+ *
+ * 1. A Spotify embed only plays a 30-second preview unless the listener is
+ *    signed in to Spotify in that same browser. A YouTube embed plays the
+ *    song in full, for free, with no account — so `youtubeId` wins whenever
+ *    it is set, and Spotify is the fallback.
+ * 2. Browsers refuse to start audio without a user gesture. With YouTube we
+ *    can at least *try*: if she has already tapped something on the page
+ *    (candles, the capsule, a track), the browser may honour a play command.
+ *    That attempt is best-effort and silent when it fails — the visible play
+ *    prompt is always there, so the song is never more than one tap away.
  */
 export default function Outro() {
   const root = useRef<HTMLElement>(null);
+  const frame = useRef<HTMLIFrameElement>(null);
   const [armed, setArmed] = useState(false);
-  const { eyebrow, title, body, hint, spotifyId } = site.outro;
+  const tried = useRef(false);
+
+  const { eyebrow, title, body, hint, youtubeId, spotifyId } = site.outro;
+  const usingYouTube = Boolean(youtubeId);
+
+  /** Ask the YouTube frame to start. Silently does nothing if refused. */
+  const nudgePlay = () => {
+    if (!usingYouTube || tried.current) return;
+    const win = frame.current?.contentWindow;
+    if (!win) return;
+
+    // Only worth trying once she has interacted with the page at all;
+    // otherwise the browser is certain to refuse and we would just be
+    // shouting into the void.
+    const activated =
+      typeof navigator !== "undefined" && "userActivation" in navigator
+        ? (navigator as Navigator & { userActivation?: { hasBeenActive: boolean } })
+            .userActivation?.hasBeenActive
+        : true;
+
+    if (!activated) return;
+    tried.current = true;
+
+    const play = () =>
+      win.postMessage(
+        JSON.stringify({ event: "command", func: "playVideo", args: [] }),
+        "https://www.youtube.com",
+      );
+
+    // The frame may still be booting its API listener.
+    play();
+    window.setTimeout(play, 700);
+    window.setTimeout(play, 1800);
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -29,7 +69,10 @@ export default function Outro() {
       const tl = gsap.timeline({
         scrollTrigger: { trigger: root.current, start: "top 72%" },
         defaults: { ease: "glass" },
-        onComplete: () => setArmed(true),
+        onComplete: () => {
+          setArmed(true);
+          nudgePlay();
+        },
       });
 
       tl.from("[data-outro-panel]", {
@@ -50,7 +93,6 @@ export default function Outro() {
         );
 
       if (!reduced) {
-        // A slow pulse on the hint so the invitation keeps asking.
         gsap.to("[data-outro-pulse]", {
           scale: 1.35,
           opacity: 0,
@@ -63,7 +105,12 @@ export default function Outro() {
     }, root);
 
     return () => ctx.revert();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const src = usingYouTube
+    ? `https://www.youtube.com/embed/${youtubeId}?enablejsapi=1&rel=0&playsinline=1&modestbranding=1`
+    : `https://open.spotify.com/embed/track/${spotifyId}?utm_source=generator&theme=0`;
 
   return (
     <section
@@ -80,10 +127,7 @@ export default function Outro() {
           }}
         >
           <div className="relative z-[3]">
-            <p
-              data-outro-line
-              className="eyebrow mb-5 !text-spotify-bright"
-            >
+            <p data-outro-line className="eyebrow mb-5 !text-spotify-bright">
               {eyebrow}
             </p>
 
@@ -101,7 +145,6 @@ export default function Outro() {
               {body}
             </p>
 
-            {/* The hint. Pulses until she reaches it. */}
             <p
               data-outro-line
               className="mt-8 inline-flex items-center gap-3 rounded-full border border-spotify/40 bg-spotify/10 px-5 py-2.5 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-spotify-bright"
@@ -124,15 +167,21 @@ export default function Outro() {
 
             <div
               data-outro-player
-              className="mt-8 overflow-hidden rounded-[1rem] bg-[#121212]"
+              className={`mt-8 overflow-hidden rounded-[1rem] bg-[#121212] ${
+                usingYouTube ? "aspect-video" : ""
+              }`}
             >
               <iframe
-                src={`https://open.spotify.com/embed/track/${spotifyId}?utm_source=generator&theme=0`}
+                ref={frame}
+                src={src}
                 title="One last song"
                 loading="lazy"
+                onLoad={nudgePlay}
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                 style={{ background: "#121212", colorScheme: "dark" }}
-                className="block h-[152px] w-full border-0"
+                className={`block w-full border-0 ${
+                  usingYouTube ? "h-full" : "h-[152px]"
+                }`}
               />
             </div>
           </div>
