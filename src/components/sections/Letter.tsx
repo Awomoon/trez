@@ -66,6 +66,14 @@ export default function Letter() {
         );
       });
 
+      gsap.from("[data-letter-closing]", {
+        y: 26,
+        opacity: 0,
+        duration: 1,
+        ease: "glass",
+        scrollTrigger: { trigger: "[data-letter-closing]", start: "top 88%" },
+      });
+
       // Signature draws itself.
       gsap.fromTo(
         "[data-signature-path]",
@@ -116,11 +124,22 @@ export default function Letter() {
             ))}
           </div>
 
-          <div data-signature className="mt-14 flex flex-col items-start gap-3">
+          {/* The final line, set larger than the body so the letter lands
+              rather than just stopping. */}
+          <p
+            data-letter-closing
+            className="display mt-12 text-balance text-[clamp(1.5rem,4.5vw,2.25rem)] leading-tight text-frost"
+          >
+            {site.letter.closing}
+          </p>
+
+          <div data-signature className="mt-12 flex flex-col items-start gap-3">
             <div className="hairline w-24" />
-            <p className="font-mono text-[0.6rem] uppercase tracking-[0.3em] text-ice/45">
-              {site.letter.signature}
-            </p>
+            {site.letter.signature && (
+              <p className="font-mono text-[0.6rem] uppercase tracking-[0.3em] text-ice/45">
+                {site.letter.signature}
+              </p>
+            )}
 
             {/* A hand-drawn flourish standing in for a signature. */}
             <svg
