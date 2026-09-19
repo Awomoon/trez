@@ -108,16 +108,26 @@ export const site = {
     },
   ],
 
-  /** The letter. Each string is its own paragraph. */
+  /**
+   * The letter — his words, unedited. Each string is its own paragraph.
+   * `closing` is the final line, set larger than the body. `signature` is
+   * optional: leave it empty and only the drawn flourish appears.
+   */
   letter: {
-    greeting: "Dear Treasure,",
+    greeting: "Happy birthday, Treasure.",
     paragraphs: [
-      "I built this instead of buying a card, because a card gives you about forty words and I needed more than that.",
-      "You have this way of making everything lighter just by being in it. Rooms, bad days, long weeks — you walk in and the whole thing recalibrates. I do not think you know how rare that is.",
-      "So today is not really about cake or candles or the number. It is about the fact that you exist, and that somehow I get to be the person standing next to you while you do it.",
-      "Happy birthday. I hope this year is unreasonably good to you.",
+      "There are honestly so many things I could say about you, and somehow I still don\u2019t think I\u2019d ever find the right words to explain how much you mean to me.",
+      "You\u2019re one of the sweetest people I\u2019ve ever had the privilege of knowing. You have such a gentle heart and a kindness that I don\u2019t think you always realize you carry. I love the way you care about the people you love, the way you try even when things aren\u2019t easy, and the little things you do that probably seem ordinary to you but mean so much to me.",
+      "Thank you for every conversation, every late night, every random laugh, every \u201Care you okay?\u201D, every little moment we shared, and every memory we created together. Thank you for letting me know a part of you that not everyone gets to see.",
+      "Some of my favorite memories aren\u2019t even the big moments. They\u2019re the simple ones \u2014 talking about random things, laughing at things that probably weren\u2019t even that funny, spending time together, and just knowing that you were there.",
+      "Meeting you has been one of the most meaningful parts of my life. You brought warmth, laughter, and so many memories into my world, and I\u2019ll always be grateful that I got the chance to know someone as genuine, kind, and beautiful as you.",
+      "I hope you never forget how appreciated you are. I hope you always remember that you have a heart worth protecting, a kindness worth keeping, and so many beautiful things ahead of you.",
+      "No matter where life takes us, I\u2019ll always be grateful for the time I got to know you, for everything you taught me, and for every memory we made.",
+      "Thank you for being you.",
+      "And most of all, thank you for existing.",
     ],
-    signature: "Always yours",
+    closing: "Happy birthday, Trez. \u2764\uFE0F",
+    signature: "",
   },
 
   /**
