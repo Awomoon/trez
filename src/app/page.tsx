@@ -15,9 +15,12 @@ import CustomCursor from "@/components/ui/CustomCursor";
 import Hero from "@/components/sections/Hero";
 import Countdown from "@/components/sections/Countdown";
 import Reasons from "@/components/sections/Reasons";
+import Memories from "@/components/sections/Memories";
 import Story from "@/components/sections/Story";
 import Gallery from "@/components/sections/Gallery";
+import Music from "@/components/sections/Music";
 import Cake from "@/components/sections/Cake";
+import TimeCapsule from "@/components/sections/TimeCapsule";
 import Letter from "@/components/sections/Letter";
 import Footer from "@/components/sections/Footer";
 
@@ -62,9 +65,12 @@ export default function Page() {
         <Hero start={ready} />
         <Countdown />
         <Reasons />
+        <Memories />
         <Story />
         <Gallery />
+        <Music />
         <Cake />
+        <TimeCapsule />
         <Letter />
         <Footer />
       </main>
