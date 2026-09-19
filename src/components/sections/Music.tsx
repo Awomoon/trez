@@ -18,7 +18,10 @@ import { site } from "@/config/site";
  * nothing until scrolled near.
  */
 
-const embedUrl = (id: string) =>
+const youtubeUrl = (id: string) =>
+  `https://www.youtube.com/embed/${id}?rel=0&playsinline=1&modestbranding=1`;
+
+const spotifyUrl = (id: string) =>
   `https://open.spotify.com/embed/track/${id}?utm_source=generator&theme=0`;
 
 export default function Music() {
@@ -87,7 +90,7 @@ export default function Music() {
 
       <ul className="mt-12 flex flex-col gap-5 sm:mt-14">
         {tracks.map((track, i) => (
-          <li key={track.spotifyId} data-track data-anim>
+          <li key={track.youtubeId ?? track.spotifyId ?? i} data-track data-anim>
             <div
               className="glass group rounded-[1.5rem] p-3 sm:p-4"
               style={{
@@ -97,17 +100,34 @@ export default function Music() {
               }}
             >
               <div className="relative z-[3]">
-                {/* The official player. It carries the artwork and metadata. */}
-                <div className="overflow-hidden rounded-[1rem] bg-[#121212]">
+                {/* The official player. It carries the artwork and metadata,
+                    which is why none of that is repeated in the markup. */}
+                {/* A 16:9 frame at the full width of this column is over
+                    400px tall, and two of them turn a tight playlist into a
+                    video page. Capping the width keeps the ratio honest and
+                    the section compact. */}
+                <div
+                  className={`overflow-hidden rounded-[1rem] bg-[#121212] ${
+                    track.youtubeId
+                      ? "mx-auto aspect-video w-full max-w-[26rem]"
+                      : ""
+                  }`}
+                >
                   <iframe
-                    src={embedUrl(track.spotifyId)}
-                    title={`Spotify player, track ${i + 1}`}
+                    src={
+                      track.youtubeId
+                        ? youtubeUrl(track.youtubeId)
+                        : spotifyUrl(track.spotifyId as string)
+                    }
+                    title={`Player, track ${i + 1}`}
                     loading="lazy"
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    // Spotify's own dark, so the frame is never a white slab
-                    // while it loads on a slow connection.
+                    // A dark backing, so the frame is never a white slab while
+                    // it loads on a slow connection.
                     style={{ background: "#121212", colorScheme: "dark" }}
-                    className="block h-[152px] w-full border-0"
+                    className={`block w-full border-0 ${
+                      track.youtubeId ? "h-full" : "h-[152px]"
+                    }`}
                   />
                 </div>
 

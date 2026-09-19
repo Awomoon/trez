@@ -190,9 +190,19 @@ export const site = {
 
   /* ---------------------------------------------------------------------- */
   /*  MUSIC                                                                  */
-  /*  Spotify track IDs — the bit after /track/ in a normal Spotify link,    */
-  /*  before any "?". The embedded player supplies the artwork, title and    */
-  /*  artist itself, so only the note needs writing here.                    */
+  /*                                                                         */
+  /*  Each track can carry either player:                                    */
+  /*                                                                         */
+  /*   youtubeId  PREFERRED — plays the song in FULL, free, no account.      */
+  /*              The id is the bit after `v=` in a watch link, or the last  */
+  /*              path segment of a youtu.be link.                           */
+  /*                                                                         */
+  /*   spotifyId  Fallback, used only when youtubeId is null. A Spotify      */
+  /*              embed plays a 30-second preview unless the listener is     */
+  /*              signed in to Spotify in that same browser.                 */
+  /*                                                                         */
+  /*  Either player supplies its own artwork and title, so only the note     */
+  /*  needs writing here.                                                    */
   /* ---------------------------------------------------------------------- */
   music: {
     eyebrow: "On repeat",
@@ -201,14 +211,20 @@ export const site = {
       "Press play. I cannot hear either of these without thinking of you, so now neither can you.",
     tracks: [
       {
+        youtubeId: null,
         spotifyId: "3oNQ6NkihVzQkV5qhk2Pbe",
         note: "This one is yours. It has been for a while.",
       },
       {
+        youtubeId: null,
         spotifyId: "39sDitIeCMrVX2QyXHY46t",
         note: "And this one is ours.",
       },
-    ] as ReadonlyArray<{ spotifyId: string; note: string }>,
+    ] as ReadonlyArray<{
+      youtubeId: string | null;
+      spotifyId: string | null;
+      note: string;
+    }>,
   },
 
   /* ---------------------------------------------------------------------- */
