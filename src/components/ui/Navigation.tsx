@@ -51,9 +51,13 @@ export default function Navigation() {
       const y = line();
       let current = LINKS[0].id;
 
+      // The last section whose top has crossed the line wins. Testing for the
+      // line being *inside* a section instead would leave nothing matching
+      // once the page reaches the outro and footer, which have no anchor of
+      // their own — and the bar would snap all the way back to "Start".
       for (const link of LINKS) {
         const rect = document.getElementById(link.id)?.getBoundingClientRect();
-        if (rect && rect.top <= y && rect.bottom > y) current = link.id;
+        if (rect && rect.top <= y) current = link.id;
       }
 
       setActive(current);
