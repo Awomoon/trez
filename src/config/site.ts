@@ -119,6 +119,113 @@ export const site = {
    */
   photos: [] as ReadonlyArray<{ src: string; caption: string }>,
 
+  /* ---------------------------------------------------------------------- */
+  /*  LITTLE THINGS I REMEMBER                                               */
+  /*  Small moments, not big ones. One or two sentences each — the shorter   */
+  /*  and more specific, the better they land. Add or remove freely.         */
+  /*  `photo` is optional: drop a file in `public/photos/` and point at it.  */
+  /* ---------------------------------------------------------------------- */
+  memories: [
+    {
+      text: "The way you always steal the window seat and then pretend you did not plan it.",
+      photo: null,
+    },
+    {
+      text: "How you narrate films you have already seen, even when I ask you not to. Especially when I ask you not to.",
+      photo: null,
+    },
+    {
+      text: "That you say goodnight twice — once when you mean it, and once forty minutes later.",
+      photo: null,
+    },
+    {
+      text: "The face you make at the first sip of something too hot, every single time, having learned nothing.",
+      photo: null,
+    },
+    {
+      text: "How you remember tiny things about people and bring them up months later like it is nothing.",
+      photo: null,
+    },
+    {
+      text: "The specific quiet of you concentrating. I have gotten very good at not interrupting it.",
+      photo: null,
+    },
+  ] as ReadonlyArray<{ text: string; photo: string | null }>,
+
+  /* ---------------------------------------------------------------------- */
+  /*  BIRTHDAY TIME CAPSULE                                                  */
+  /*  A sealed envelope she clicks open. `message` is the letter inside      */
+  /*  (one string per paragraph); `wishes` is the list for her new year.     */
+  /* ---------------------------------------------------------------------- */
+  timeCapsule: {
+    eyebrow: "Sealed until today",
+    title: "A time capsule",
+    prompt: "Something I wrote down and saved for this exact morning. Go on — open it.",
+    sealInitial: "T",
+    buttonSealed: "Break the seal",
+    message: [
+      "I wrote this a while before your birthday, so by the time you read it I have already been looking forward to it for weeks.",
+      "Here is what I want you to know going into this year: you are allowed to take up space in it. Ask for the thing. Go to the place. Be as much as you already are.",
+    ],
+    wishesTitle: "For your new year",
+    wishes: [
+      "That the thing you have been quietly working towards finally gives.",
+      "That you sleep properly, at least sometimes.",
+      "That someone surprises you in the good way.",
+      "That you get a whole day with nothing scheduled and nobody needing you.",
+      "That you laugh so hard it stops being about anything funny.",
+    ],
+    signoff: "See you on the other side of the candles.",
+  },
+
+  /* ---------------------------------------------------------------------- */
+  /*  MUSIC                                                                  */
+  /*  Songs that make you think of her. `note` is why it is on the list.     */
+  /*                                                                         */
+  /*  `embedUrl` is optional. Paste any provider's EMBED url and a player    */
+  /*  appears when the card is opened:                                       */
+  /*    Spotify  https://open.spotify.com/embed/track/<id>                   */
+  /*    YouTube  https://www.youtube.com/embed/<id>                          */
+  /*    Apple    https://embed.music.apple.com/us/album/<...>                */
+  /*  Leave it null and the card still works — it just links out instead.    */
+  /* ---------------------------------------------------------------------- */
+  music: [
+    {
+      title: "Song title",
+      artist: "Artist",
+      note: "The one that was playing the first time, and has never really stopped since.",
+      embedUrl: null,
+      link: null,
+    },
+    {
+      title: "Song title",
+      artist: "Artist",
+      note: "Yours long before it was ours. I have given up trying to hear it any other way.",
+      embedUrl: null,
+      link: null,
+    },
+    {
+      title: "Song title",
+      artist: "Artist",
+      note: "For the drive where neither of us said anything for twenty minutes and it was fine.",
+      embedUrl: null,
+      link: null,
+    },
+    {
+      title: "Song title",
+      artist: "Artist",
+      note: "You played this to death. I complained. I now play it to death.",
+      embedUrl: null,
+      link: null,
+    },
+  ] as ReadonlyArray<{
+    title: string;
+    artist: string;
+    note: string;
+    embedUrl: string | null;
+    link: string | null;
+  }>,
+
   /** Final send-off. */
   closing: {
     title: "Make a wish",

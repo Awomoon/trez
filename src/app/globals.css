@@ -331,3 +331,14 @@ body {
     opacity: 0;
   }
 }
+
+/* Music equalizer bars. */
+@keyframes bounceBar {
+  0%,
+  100% {
+    transform: scaleY(0.25);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}

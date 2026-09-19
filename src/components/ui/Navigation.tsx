@@ -3,12 +3,17 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 
+// Labels are kept short on purpose: nine anchors have to fit a phone, and the
+// bar scrolls sideways when they cannot.
 const LINKS = [
   { id: "hero", label: "Start" },
-  { id: "countdown", label: "Countdown" },
+  { id: "countdown", label: "Count" },
   { id: "reasons", label: "Reasons" },
+  { id: "memories", label: "Memories" },
   { id: "story", label: "Story" },
+  { id: "music", label: "Music" },
   { id: "cake", label: "Wish" },
+  { id: "capsule", label: "Capsule" },
   { id: "letter", label: "Letter" },
 ];
 
@@ -20,6 +25,7 @@ export default function Navigation() {
   const [active, setActive] = useState("hero");
   const nav = useRef<HTMLElement>(null);
   const pill = useRef<HTMLSpanElement>(null);
+  const scroller = useRef<HTMLDivElement>(null);
 
   // Reveal the nav once the hero has been scrolled past its first screen.
   useEffect(() => {
@@ -83,6 +89,29 @@ export default function Navigation() {
       duration: 0.6,
       ease: "glass",
     });
+
+    // Nine anchors do not fit a phone, so the bar scrolls. Keep the active one
+    // centred in it as the page moves, otherwise the highlight slides to a
+    // pill that is off-screen and the bar looks stuck on the wrong section.
+    // scrollLeft is set directly rather than via scrollIntoView, which would
+    // also scroll the page and fight the very scrolling that triggered this.
+    const box = scroller.current;
+    if (!box || box.scrollWidth <= box.clientWidth) return;
+
+    const target = Math.max(
+      0,
+      Math.min(
+        el.offsetLeft - (box.clientWidth - el.offsetWidth) / 2,
+        box.scrollWidth - box.clientWidth,
+      ),
+    );
+
+    box.scrollTo({
+      left: target,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+    });
   }, [active]);
 
   const goTo = (id: string) => {
@@ -100,27 +129,34 @@ export default function Navigation() {
       aria-label="Sections"
       className="fixed inset-x-0 top-[max(1rem,env(safe-area-inset-top))] z-40 flex justify-center px-4"
     >
-      <div className="glass relative flex max-w-full items-center overflow-x-auto rounded-full p-1 sm:gap-0.5 sm:p-1.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        <span
-          ref={pill}
-          aria-hidden
-          className="absolute left-0 top-1 bottom-1 z-0 rounded-full bg-white/12 opacity-0 shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] sm:top-1.5 sm:bottom-1.5"
-        />
-        {LINKS.map((link) => (
-          <button
-            key={link.id}
-            data-link={link.id}
-            onClick={() => goTo(link.id)}
-            aria-current={active === link.id ? "true" : undefined}
-            className={`relative z-[3] shrink-0 rounded-full px-2.5 py-2 font-mono text-[0.55rem] uppercase tracking-[0.12em] transition-colors duration-300 sm:px-4 sm:text-[0.65rem] sm:tracking-[0.2em] ${
-              active === link.id
-                ? "text-white"
-                : "text-ice/55 hover:text-ice"
-            }`}
-          >
-            {link.label}
-          </button>
-        ))}
+      {/* The glass shell must not be the scrolling element: its rim and sheen
+          are absolutely positioned children, so they scroll away with the
+          content and the pill's outline detaches from the bar. The shell stays
+          put and a plain inner track does the scrolling. */}
+      <div className="glass relative max-w-full rounded-full p-1 sm:p-1.5">
+        <div
+          ref={scroller}
+          className="relative z-[3] flex items-center overflow-x-auto rounded-full sm:gap-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          <span
+            ref={pill}
+            aria-hidden
+            className="absolute left-0 top-0 bottom-0 z-0 rounded-full bg-white/12 opacity-0 shadow-[inset_0_1px_0_rgba(255,255,255,0.4)]"
+          />
+          {LINKS.map((link) => (
+            <button
+              key={link.id}
+              data-link={link.id}
+              onClick={() => goTo(link.id)}
+              aria-current={active === link.id ? "true" : undefined}
+              className={`relative z-[3] shrink-0 rounded-full px-2.5 py-2 font-mono text-[0.55rem] uppercase tracking-[0.12em] transition-colors duration-300 sm:px-4 sm:text-[0.65rem] sm:tracking-[0.2em] ${
+                active === link.id ? "text-white" : "text-ice/55 hover:text-ice"
+              }`}
+            >
+              {link.label}
+            </button>
+          ))}
+        </div>
       </div>
     </nav>
   );
