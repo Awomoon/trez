@@ -114,15 +114,13 @@ export const site = {
    * optional: leave it empty and only the drawn flourish appears.
    */
   letter: {
-    greeting: "Happy birthday, Treasure.",
+    greeting: "Happy birthday, Treasure. \u2764\uFE0F",
     paragraphs: [
-      "There are honestly so many things I could say about you, and somehow I still don\u2019t think I\u2019d ever find the right words to explain how much you mean to me.",
-      "You\u2019re one of the sweetest people I\u2019ve ever had the privilege of knowing. You have such a gentle heart and a kindness that I don\u2019t think you always realize you carry. I love the way you care about the people you love, the way you try even when things aren\u2019t easy, and the little things you do that probably seem ordinary to you but mean so much to me.",
-      "Thank you for every conversation, every late night, every random laugh, every \u201Care you okay?\u201D, every little moment we shared, and every memory we created together. Thank you for letting me know a part of you that not everyone gets to see.",
-      "Some of my favorite memories aren\u2019t even the big moments. They\u2019re the simple ones \u2014 talking about random things, laughing at things that probably weren\u2019t even that funny, spending time together, and just knowing that you were there.",
-      "Meeting you has been one of the most meaningful parts of my life. You brought warmth, laughter, and so many memories into my world, and I\u2019ll always be grateful that I got the chance to know someone as genuine, kind, and beautiful as you.",
-      "I hope you never forget how appreciated you are. I hope you always remember that you have a heart worth protecting, a kindness worth keeping, and so many beautiful things ahead of you.",
-      "No matter where life takes us, I\u2019ll always be grateful for the time I got to know you, for everything you taught me, and for every memory we made.",
+      "There are so many things I could say about you, and I still don\u2019t think I\u2019d ever find the right words to explain how much you mean to me.",
+      "You\u2019re one of the sweetest people I\u2019ve had the privilege of knowing. You have such a gentle heart and a kindness that I don\u2019t think you always realize you carry. I love the way you care about the people you love, the way you try even when things aren\u2019t easy, and all the little things that make you who you are.",
+      "Thank you for every conversation, every random laugh, every late night, every \u201Care you okay?\u201D, and every little moment we shared. Some of my favorite memories are the simplest ones just talking, laughing, and knowing you were there.",
+      "Meeting you has been one of the most meaningful parts of my life, and I\u2019ll always be grateful for the memories we made.",
+      "I hope you never forget how appreciated you are, and I hope this new year brings you beautiful things.",
       "Thank you for being you.",
       "And most of all, thank you for existing.",
     ],
@@ -184,18 +182,23 @@ export const site = {
     sealInitial: "T",
     buttonSealed: "Break the seal",
     message: [
-      "I wrote this a while before your birthday, so by the time you read it I have already been looking forward to it for weeks.",
-      "Here is what I want you to know going into this year: you are allowed to take up space in it. Ask for the thing. Go to the place. Be as much as you already are.",
+      "I wrote this a while before your birthday, so by the time you read it, I\u2019ve already been looking forward to this day for weeks.",
+      "Here\u2019s what I want you to know going into this year: you\u2019re allowed to take up space in it. Ask for the thing. Go to the place. Be as much as you already are.",
     ],
     wishesTitle: "For your new year",
     wishes: [
-      "That the thing you have been quietly working towards finally gives.",
-      "That you sleep properly, at least sometimes.",
-      "That someone surprises you in the good way.",
-      "That you get a whole day with nothing scheduled and nobody needing you.",
-      "That you laugh so hard it stops being about anything funny.",
+      "May the thing you\u2019ve been quietly working towards finally give.",
+      "May you sleep properly, at least sometimes.",
+      "May someone surprise you in the best way.",
+      "May you love yourself a little more.",
+      "May you laugh so hard that, for a moment, it stops being about anything funny.",
     ],
-    signoff: "See you on the other side of the candles.",
+    /**
+     * Shown in place of `prompt` once the capsule is open. Empty on purpose:
+     * his message is the only voice that belongs here, so nothing of mine is
+     * left sitting above it. Set it to a line of your own and it reappears.
+     */
+    signoff: "",
   },
 
   /* ---------------------------------------------------------------------- */

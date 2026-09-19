@@ -125,12 +125,17 @@ export default function TimeCapsule() {
         {capsule.title}
       </h2>
 
-      <p
-        data-anim
-        className="relative z-10 mx-auto mt-5 max-w-md text-balance text-sm leading-relaxed text-ice/65 sm:text-base"
-      >
-        {open ? capsule.signoff : capsule.prompt}
-      </p>
+      {/* The prompt invites her to open it; once open there is nothing left
+          for it to say, so an empty signoff removes the line entirely rather
+          than leaving a gap above his message. */}
+      {(open ? capsule.signoff : capsule.prompt) && (
+        <p
+          data-anim
+          className="relative z-10 mx-auto mt-5 max-w-md text-balance text-sm leading-relaxed text-ice/65 sm:text-base"
+        >
+          {open ? capsule.signoff : capsule.prompt}
+        </p>
+      )}
 
       <div data-capsule-stage data-anim className="mt-20 sm:mt-24">
         {/* ---------------- Envelope ---------------- */}
