@@ -5,8 +5,18 @@
 /* -------------------------------------------------------------------------- */
 
 export const site = {
-  /** Her name, shown huge on the hero. */
+  /**
+   * What you call her — this is the one splashed across the hero, the
+   * preloader and the closing line.
+   */
   name: "Trez",
+
+  /**
+   * Her full name. Used only where the extra weight earns it: the letter
+   * greeting and the browser tab. Set it to the same as `name` if you would
+   * rather it never appears.
+   */
+  fullName: "Treasure",
 
   /** Shown under the name. Keep it short. */
   tagline: "Happy Birthday, my favourite person",
@@ -19,7 +29,7 @@ export const site = {
 
   /** Little line in the browser tab / link previews. */
   meta: {
-    title: "Happy Birthday, Trez 💙",
+    title: "Happy Birthday, Treasure 💙",
     description:
       "A small corner of the internet built entirely for you — October 8th.",
   },
@@ -100,7 +110,7 @@ export const site = {
 
   /** The letter. Each string is its own paragraph. */
   letter: {
-    greeting: "Dear Trez,",
+    greeting: "Dear Treasure,",
     paragraphs: [
       "I built this instead of buying a card, because a card gives you about forty words and I needed more than that.",
       "You have this way of making everything lighter just by being in it. Rooms, bad days, long weeks — you walk in and the whole thing recalibrates. I do not think you know how rare that is.",
@@ -210,6 +220,20 @@ export const site = {
     title: "One last song",
     body: "You have read the whole thing, so you have earned this. Press play and let it see you out.",
     hint: "Tap play — I picked this one for right now",
+
+    /**
+     * PREFERRED. A YouTube video id — the bit after `v=` in a watch link, or
+     * the last path segment of a youtu.be link.
+     *
+     * Why YouTube for this one: a Spotify embed only plays a 30-second
+     * preview unless the listener happens to be signed in to Spotify in that
+     * same browser. YouTube plays the song in full, for free, with no account
+     * — which is what "let it play all the way through" actually needs.
+     * It also lets the page try to start the song by itself when she arrives.
+     */
+    youtubeId: null as string | null,
+
+    /** Fallback, used only when `youtubeId` is null. Plays a 30s preview. */
     spotifyId: "0DfHX7TBn8srQlyUS7UUBC",
   },
 
