@@ -180,58 +180,50 @@ export const site = {
 
   /* ---------------------------------------------------------------------- */
   /*  MUSIC                                                                  */
-  /*  Songs that make you think of her. `note` is why it is on the list.     */
-  /*                                                                         */
-  /*  `embedUrl` is optional. Paste any provider's EMBED url and a player    */
-  /*  appears when the card is opened:                                       */
-  /*    Spotify  https://open.spotify.com/embed/track/<id>                   */
-  /*    YouTube  https://www.youtube.com/embed/<id>                          */
-  /*    Apple    https://embed.music.apple.com/us/album/<...>                */
-  /*  Leave it null and the card still works — it just links out instead.    */
+  /*  Spotify track IDs — the bit after /track/ in a normal Spotify link,    */
+  /*  before any "?". The embedded player supplies the artwork, title and    */
+  /*  artist itself, so only the note needs writing here.                    */
   /* ---------------------------------------------------------------------- */
-  music: [
-    {
-      title: "Song title",
-      artist: "Artist",
-      note: "The one that was playing the first time, and has never really stopped since.",
-      embedUrl: null,
-      link: null,
-    },
-    {
-      title: "Song title",
-      artist: "Artist",
-      note: "Yours long before it was ours. I have given up trying to hear it any other way.",
-      embedUrl: null,
-      link: null,
-    },
-    {
-      title: "Song title",
-      artist: "Artist",
-      note: "For the drive where neither of us said anything for twenty minutes and it was fine.",
-      embedUrl: null,
-      link: null,
-    },
-    {
-      title: "Song title",
-      artist: "Artist",
-      note: "You played this to death. I complained. I now play it to death.",
-      embedUrl: null,
-      link: null,
-    },
-  ] as ReadonlyArray<{
-    title: string;
-    artist: string;
-    note: string;
-    embedUrl: string | null;
-    link: string | null;
-  }>,
+  music: {
+    eyebrow: "On repeat",
+    title: "Two songs that are just you now",
+    subtitle:
+      "Press play. I cannot hear either of these without thinking of you, so now neither can you.",
+    tracks: [
+      {
+        spotifyId: "3oNQ6NkihVzQkV5qhk2Pbe",
+        note: "This one is yours. It has been for a while.",
+      },
+      {
+        spotifyId: "39sDitIeCMrVX2QyXHY46t",
+        note: "And this one is ours.",
+      },
+    ] as ReadonlyArray<{ spotifyId: string; note: string }>,
+  },
+
+  /* ---------------------------------------------------------------------- */
+  /*  OUTRO                                                                  */
+  /*  The last thing on the page: one more song to see her out.              */
+  /* ---------------------------------------------------------------------- */
+  outro: {
+    eyebrow: "You reached the end",
+    title: "One last song",
+    body: "You have read the whole thing, so you have earned this. Press play and let it see you out.",
+    hint: "Tap play — I picked this one for right now",
+    spotifyId: "0DfHX7TBn8srQlyUS7UUBC",
+  },
+
 
   /** Final send-off. */
   closing: {
     title: "Make a wish",
+    /** How many candles sit on the cake. */
+    candles: 3,
     /** Shown before any candle is out. */
-    body: "Five candles, five chances. Take your time with the wish.",
-    /** Shown once every candle is out. */
+    body: "Three candles. Take your time with the wish.",
+    /** The big animated line once every candle is out. */
+    wish: "I hope your wish comes true",
+    /** Shown under it. */
     bodyDone:
       "Whatever you just wished for, I am on your side. Now go and have the kind of day you would want to relive.",
   },

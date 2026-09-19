@@ -22,6 +22,7 @@ import Music from "@/components/sections/Music";
 import Cake from "@/components/sections/Cake";
 import TimeCapsule from "@/components/sections/TimeCapsule";
 import Letter from "@/components/sections/Letter";
+import Outro from "@/components/sections/Outro";
 import Footer from "@/components/sections/Footer";
 
 export default function Page() {
@@ -72,6 +73,7 @@ export default function Page() {
         <Cake />
         <TimeCapsule />
         <Letter />
+        <Outro />
         <Footer />
       </main>
     </>

@@ -1,12 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap, ScrollTrigger, SplitText } from "@/lib/gsap";
 import { site } from "@/config/site";
 import GlassPanel from "@/components/ui/GlassPanel";
 import { burstConfetti } from "@/components/effects/confetti";
 
-const CANDLE_COUNT = 5;
+const CANDLE_COUNT = site.closing.candles;
 
 /** One layer of the cake: a glass pane wearing a lip of icing. */
 function Tier({
@@ -179,8 +179,10 @@ export default function Cake() {
       { y: -18, duration: 0.35, yoyo: true, repeat: 1, ease: "power2.out" },
     );
 
+    const reveal = root.current?.querySelector("[data-wish-reveal]");
+
     gsap.fromTo(
-      root.current?.querySelector("[data-wish-reveal]") ?? null,
+      reveal ?? null,
       { opacity: 0, y: 24, filter: "blur(10px)" },
       {
         opacity: 1,
@@ -191,6 +193,45 @@ export default function Cake() {
         ease: "glass",
       },
     );
+
+    // The wish itself lands one word at a time, with a halo blooming behind
+    // it — this is the payoff of the whole section, so it gets its own beat
+    // rather than fading in with everything else.
+    const wishEl = root.current?.querySelector("[data-wish-line]");
+
+    if (wishEl && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const split = new SplitText(wishEl, {
+        type: "words",
+        wordsClass: "inline-block will-change-transform",
+      });
+
+      gsap.timeline({ delay: 0.45 })
+        .from(split.words, {
+          yPercent: 130,
+          rotateX: -70,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.09,
+          ease: "glass",
+        })
+        .fromTo(
+          root.current?.querySelector("[data-wish-halo]") ?? null,
+          { opacity: 0, scale: 0.6 },
+          { opacity: 1, scale: 1, duration: 1.4, ease: "power2.out" },
+          "-=0.9",
+        )
+        .to(
+          root.current?.querySelector("[data-wish-halo]") ?? null,
+          {
+            opacity: 0.55,
+            scale: 1.12,
+            duration: 2.6,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+          },
+        );
+    }
 
     ScrollTrigger.refresh();
   }, [allOut]);
@@ -327,8 +368,21 @@ export default function Cake() {
 
       <div className="mt-10 flex flex-col items-center gap-6">
         {allOut ? (
-          <div data-wish-reveal className="flex flex-col items-center gap-6">
-            <p className="display shimmer-text text-[clamp(1.75rem,5vw,2.75rem)]">
+          <div data-wish-reveal className="relative flex flex-col items-center gap-6">
+            <span
+              data-wish-halo
+              aria-hidden
+              className="pointer-events-none absolute -top-14 h-56 w-56 rounded-full bg-cyan/40 opacity-0 blur-3xl sm:h-72 sm:w-72"
+            />
+
+            <p
+              data-wish-line
+              className="display relative text-balance text-[clamp(1.9rem,6vw,3.25rem)] text-frost [perspective:800px]"
+            >
+              {site.closing.wish}
+            </p>
+
+            <p className="display shimmer-text text-[clamp(1.35rem,4vw,2rem)]">
               Happy birthday, {site.name}
             </p>
             <button
