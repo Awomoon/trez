@@ -1,12 +1,12 @@
 /* -------------------------------------------------------------------------- */
 /*  EDIT ME                                                                    */
 /*  Everything the site says lives in this one file. Change the words here     */
-/*  and the whole page updates — you never need to touch a component.          */
+/*  and the whole page updates, so you never touch a component.            */
 /* -------------------------------------------------------------------------- */
 
 export const site = {
   /**
-   * What you call her — this is the one splashed across the hero, the
+   * What you call her. This is the one splashed across the hero, the
    * preloader and the closing line.
    */
   name: "Trez",
@@ -31,7 +31,7 @@ export const site = {
   meta: {
     title: "Happy Birthday, Treasure 💙",
     description:
-      "A small corner of the internet built entirely for you — October 8th.",
+      "A small corner of the internet built entirely for you, for October 8th.",
   },
 
   /** The hero's rotating words. Any number of them. */
@@ -41,7 +41,7 @@ export const site = {
   countdown: {
     beforeTitle: "Counting down to your day",
     dayOfTitle: "It's today. It's finally today.",
-    afterTitle: "Your day happened — and it was perfect",
+    afterTitle: "Your day happened, and it was perfect",
     beforeSubtitle:
       "Every second between now and October 8th is a second closer to celebrating you.",
     dayOfSubtitle:
@@ -50,7 +50,7 @@ export const site = {
       "Consider this page a permanent reminder of how loved you are.",
   },
 
-  /** Reason cards. Add or remove freely — the grid adapts. */
+  /** Reason cards. Add or remove freely; the grid adapts. */
   reasons: [
     {
       title: "Your laugh",
@@ -59,7 +59,7 @@ export const site = {
     },
     {
       title: "Your mind",
-      body: "You actually want to know people. Not the surface of them \u2014 the whole thing. You ask the question after the question, you listen to the answer, and you remember it months later.",
+      body: "You actually want to know people. Not the surface of them. The whole thing. You ask the question after the question, you listen to the answer, and you remember it months later.",
       emoji: "💭",
     },
     {
@@ -83,8 +83,8 @@ export const site = {
   timeline: [
     {
       chapter: "01",
-      title: "The beginning",
-      body: "Before I knew how important it would turn out to be. Funny how the biggest days never announce themselves.",
+      title: "A comment under a TikTok",
+      body: "That’s honestly how it started. One comment, the kind you scroll past a thousand times without thinking twice. Neither of us had any idea what it was going to turn into.",
     },
     {
       chapter: "02",
@@ -104,7 +104,7 @@ export const site = {
   ],
 
   /**
-   * The letter — his words, unedited. Each string is its own paragraph.
+   * The letter, in his words, unedited. Each string is its own paragraph.
    * `closing` is the final line, set larger than the body. `signature` is
    * optional: leave it empty and only the drawn flourish appears.
    */
@@ -125,7 +125,7 @@ export const site = {
 
   /**
    * Optional photo gallery. Drop images into `public/photos/` and list them
-   * here — the gallery section appears automatically once there is at least
+   * here. The gallery section appears automatically once there is at least
    * one. Leave the array empty and the section is skipped entirely.
    *
    *   { src: "/photos/us-01.jpg", caption: "That night in the rain" },
@@ -134,37 +134,33 @@ export const site = {
 
   /* ---------------------------------------------------------------------- */
   /*  LITTLE THINGS I REMEMBER                                               */
-  /*  Small moments, not big ones. One or two sentences each — the shorter   */
+  /*  Small moments, not big ones. One or two sentences each. The shorter     */
   /*  and more specific, the better they land. Add or remove freely.         */
   /*  `photo` is optional: drop a file in `public/photos/` and point at it.  */
   /* ---------------------------------------------------------------------- */
   memories: [
     {
-      text: "It started with a comment. One comment, on an ordinary day, and somehow everything after it. 💬",
+      text: "I remember the Spotify jams that ran way too late. Both of us going quiet, both of us falling asleep with it still playing. 🎧",
       photo: null,
     },
     {
-      text: "I remember when we listened to Spotify jams till we sleep off sometimes. 🎧",
+      text: "I remember how we prank each other out of nowhere. No reason, no warning, just because you were there and I was bored.",
       photo: null,
     },
     {
-      text: "I remember when we randomly prank each other.",
+      text: "I remember the days we would comfort each other over absolutely nothing. Nothing was wrong. We did it anyway.",
       photo: null,
     },
     {
-      text: "I remember the days where we would randomly comfort each other even though nothing might be wrong.",
+      text: "I remember the first night you sent me a picture of you before bed. I’ve thought about that one more than I should probably admit. 🌙",
       photo: null,
     },
     {
-      text: "I remember the first day you sent me a picture of you before going to bed. 🌙",
+      text: "I remember how nervous I got the first time you told me about your cramps. I genuinely didn’t know what to do with myself.",
       photo: null,
     },
     {
-      text: "I remember how nervous I was when I first heard of your cramps.",
-      photo: null,
-    },
-    {
-      text: "I remember how excited you were when we won our first Call of Duty battle royale. 🎮",
+      text: "I remember how loud you got when we finally won our first Call of Duty battle royale. I can still hear it. 🎮",
       photo: null,
     },
   ] as ReadonlyArray<{ text: string; photo: string | null }>,
@@ -177,7 +173,7 @@ export const site = {
   timeCapsule: {
     eyebrow: "Sealed until today",
     title: "A time capsule",
-    prompt: "Something I wrote down and saved for this exact morning. Go on — open it.",
+    prompt: "Something I wrote down and saved for this exact morning. Go on, open it.",
     sealInitial: "T",
     buttonSealed: "Break the seal",
     message: [
@@ -205,7 +201,7 @@ export const site = {
   /*                                                                         */
   /*  Each track can carry either player:                                    */
   /*                                                                         */
-  /*   youtubeId  PREFERRED — plays the song in FULL, free, no account.      */
+  /*   youtubeId  PREFERRED. Plays the song in FULL, free, no account.       */
   /*              The id is the bit after `v=` in a watch link, or the last  */
   /*              path segment of a youtu.be link.                           */
   /*                                                                         */
@@ -252,16 +248,16 @@ export const site = {
     eyebrow: "You reached the end",
     title: "One last song",
     body: "You have read the whole thing, so you have earned this. Press play and let it see you out.",
-    hint: "Tap play — I picked this one for right now",
+    hint: "Tap play. I picked this one for right now",
 
     /**
-     * PREFERRED. A YouTube video id — the bit after `v=` in a watch link, or
+     * PREFERRED. A YouTube video id, the bit after `v=` in a watch link, or
      * the last path segment of a youtu.be link.
      *
      * Why YouTube for this one: a Spotify embed only plays a 30-second
      * preview unless the listener happens to be signed in to Spotify in that
      * same browser. YouTube plays the song in full, for free, with no account
-     * — which is what "let it play all the way through" actually needs.
+     * which is what "let it play all the way through" actually needs.
      * It also lets the page try to start the song by itself when she arrives.
      */
     youtubeId: null as string | null,

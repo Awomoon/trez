@@ -133,7 +133,7 @@ export default function Story() {
           aria-hidden
           className="mt-10 hidden px-12 font-mono text-[0.6rem] uppercase tracking-[0.3em] text-ice/35 lg:block"
         >
-          Keep scrolling — the story moves sideways
+          Keep scrolling, the story moves sideways
         </p>
       </div>
     </section>
