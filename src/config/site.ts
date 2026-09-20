@@ -59,8 +59,8 @@ export const site = {
     },
     {
       title: "Your mind",
-      body: "You notice the things everyone else walks past. Talking to you makes the world feel bigger than it did an hour ago.",
-      emoji: "🌊",
+      body: "You actually want to know people. Not the surface of them \u2014 the whole thing. You ask the question after the question, you listen to the answer, and you remember it months later.",
+      emoji: "💭",
     },
     {
       title: "Your kindness",
@@ -71,11 +71,6 @@ export const site = {
       title: "Your stubbornness",
       body: "Yes, this is a compliment. You decide something is worth it and then simply refuse to let the world talk you out of it.",
       emoji: "⚡",
-    },
-    {
-      title: "Your blue",
-      body: "Somehow you made an entire colour yours. Now I cannot see an ocean, a sky, or a neon sign without thinking of you.",
-      emoji: "🫧",
     },
     {
       title: "Your everything",
@@ -145,27 +140,31 @@ export const site = {
   /* ---------------------------------------------------------------------- */
   memories: [
     {
-      text: "The way you always steal the window seat and then pretend you did not plan it.",
+      text: "It started with a comment. One comment, on an ordinary day, and somehow everything after it. 💬",
       photo: null,
     },
     {
-      text: "How you narrate films you have already seen, even when I ask you not to. Especially when I ask you not to.",
+      text: "I remember when we listened to Spotify jams till we sleep off sometimes. 🎧",
       photo: null,
     },
     {
-      text: "That you say goodnight twice — once when you mean it, and once forty minutes later.",
+      text: "I remember when we randomly prank each other.",
       photo: null,
     },
     {
-      text: "The face you make at the first sip of something too hot, every single time, having learned nothing.",
+      text: "I remember the days where we would randomly comfort each other even though nothing might be wrong.",
       photo: null,
     },
     {
-      text: "How you remember tiny things about people and bring them up months later like it is nothing.",
+      text: "I remember the first day you sent me a picture of you before going to bed. 🌙",
       photo: null,
     },
     {
-      text: "The specific quiet of you concentrating. I have gotten very good at not interrupting it.",
+      text: "I remember how nervous I was when I first heard of your cramps.",
+      photo: null,
+    },
+    {
+      text: "I remember how excited you were when we won our first Call of Duty battle royale. 🎮",
       photo: null,
     },
   ] as ReadonlyArray<{ text: string; photo: string | null }>,
