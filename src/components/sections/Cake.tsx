@@ -259,7 +259,7 @@ export default function Cake() {
       >
         {allOut
           ? site.closing.bodyDone
-          : `Tap each flame — ${remaining} still burning.`}
+          : `Tap each flame. ${remaining} still burning.`}
       </p>
 
       {/* ---------------------------------------------------------------- */}
