@@ -131,13 +131,15 @@ export default function Music() {
                   />
                 </div>
 
-                <p className="mt-4 flex gap-3 px-2 pb-1 text-sm leading-relaxed text-ice/70">
-                  <span
-                    aria-hidden
-                    className="mt-1.5 h-4 w-[2px] shrink-0 rounded-full bg-spotify-bright"
-                  />
-                  {track.note}
-                </p>
+                {track.note && (
+                  <p className="mt-4 flex gap-3 px-2 pb-1 text-sm leading-relaxed text-ice/70">
+                    <span
+                      aria-hidden
+                      className="mt-1.5 h-4 w-[2px] shrink-0 rounded-full bg-spotify-bright"
+                    />
+                    {track.note}
+                  </p>
+                )}
               </div>
             </div>
           </li>
