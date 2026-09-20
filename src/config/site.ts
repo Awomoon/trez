@@ -219,9 +219,9 @@ export const site = {
   /* ---------------------------------------------------------------------- */
   music: {
     eyebrow: "On repeat",
-    title: "Two songs that are just you now",
+    title: "Three songs that are just you now",
     subtitle:
-      "Press play. I cannot hear either of these without thinking of you, so now neither can you.",
+      "Press play. I cannot hear any of these without thinking of you, so now neither can you.",
     tracks: [
       {
         youtubeId: null,
@@ -232,6 +232,11 @@ export const site = {
         youtubeId: null,
         spotifyId: "39sDitIeCMrVX2QyXHY46t",
         note: "And this one is ours.",
+      },
+      {
+        youtubeId: null,
+        spotifyId: "0WQiDwKJclirSYG9v5tayI",
+        note: "And this one, because some songs only make sense once you know the person.",
       },
     ] as ReadonlyArray<{
       youtubeId: string | null;
