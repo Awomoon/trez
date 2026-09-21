@@ -5,18 +5,23 @@
 /*  THEME TOKENS                                                              */
 /* ========================================================================== */
 @theme {
-  --color-abyss: #01050e;
-  --color-deep: #03102a;
-  --color-navy: #0a1f47;
-  --color-azure: #2f7dff;
-  --color-sky: #6db4ff;
-  --color-cyan: #46e0ff;
-  --color-ice: #cfe9ff;
-  --color-frost: #eef7ff;
-  --color-violet: #7a6bff;
+  /* A night sky, from the dark at the bottom of it up to moonlight.
+     Deliberately not led by blue: the carrying colour is a soft lavender
+     and the bright one is moonlight, which is white with the warmth taken
+     out. Blue survives only as the cold underneath, which is what a real
+     night looks like. */
+  --color-abyss: #04050c; /* the page itself */
+  --color-deep: #0a0c18;
+  --color-navy: #171a2c;
+  --color-azure: #a89fd6; /* lavender: the carrying accent */
+  --color-sky: #c9cee0; /* silver */
+  --color-cyan: #e6e9f5; /* moonlight: the bright accent */
+  --color-ice: #d3d7e6;
+  --color-frost: #f6f7fb;
+  --color-violet: #9287c9;
 
   /* Spotify's greens, used only in the music and outro sections so those
-     read as "this is a player" against the blue everywhere else. */
+     read as "this is a player" against everything else. */
   --color-spotify: #1db954;
   --color-spotify-bright: #1ed760;
 
@@ -40,58 +45,23 @@
   /*  mixed in at the point of use: rgb(var(--c-glow) / 0.4).                */
   /*                                                                        */
   /*  Every glow, rim, shadow and gradient in the site goes through these    */
-  /*  four, which is what lets a whole theme swap happen in one block.       */
+  /*  four, so the whole palette moves together from one place.              */
   /* ---------------------------------------------------------------------- */
-  --c-glow: 70 224 255; /* the bright one: rims, highlights, hairlines */
-  --c-accent: 47 125 255; /* the carrying colour: outer glows */
-  --c-violet: 122 107 255; /* the second accent in gradients */
-  --c-ink: 1 5 14; /* the bottom of every shadow */
+  --c-glow: 230 233 245; /* the bright one: rims, highlights, hairlines */
+  --c-accent: 168 159 214; /* the carrying colour: outer glows */
+  --c-violet: 146 135 201; /* the second accent in gradients */
+  --c-ink: 2 3 9; /* the bottom of every shadow */
 
-  /* The blobs behind the glass. */
-  --c-blob-1: 47 125 255;
-  --c-blob-2: 70 224 255;
-  --c-blob-3: 122 107 255;
-  --c-blob-4: 10 31 71;
-  --c-blob-5: 109 180 255;
-  --blob-alpha: 1;
-}
-
-/* ========================================================================== */
-/*  MOONLIT                                                                   */
-/*                                                                            */
-/*  Same site, seen at night. Nothing here changes a layout, a size or a      */
-/*  timing: it is the palette and the light, and nothing else.                */
-/*                                                                            */
-/*  The brief was no dominant blue, so the carrying colour is a soft lavender */
-/*  and the bright one is plain moonlight, which is close to white with the   */
-/*  warmth taken out. Blue survives only as the cold at the bottom of the     */
-/*  sky, which is what a night actually looks like.                           */
-/* ========================================================================== */
-[data-theme="moon"] {
-  --color-abyss: #04050c;
-  --color-deep: #0a0c18;
-  --color-navy: #171a2c;
-  --color-azure: #a89fd6;
-  --color-sky: #c9cee0;
-  --color-cyan: #e6e9f5;
-  --color-ice: #d3d7e6;
-  --color-frost: #f6f7fb;
-  --color-violet: #9287c9;
-
-  --c-glow: 230 233 245;
-  --c-accent: 168 159 214;
-  --c-violet: 146 135 201;
-  --c-ink: 2 3 9;
-
+  /* The blobs behind the glass. Moonlight is reflected light, so these sit
+     lower than a lit-from-within palette would, or the sky washes out. */
   --c-blob-1: 104 96 150;
   --c-blob-2: 166 172 200;
   --c-blob-3: 78 74 122;
   --c-blob-4: 22 24 42;
   --c-blob-5: 132 128 176;
-  /* Moonlight is reflected light, so the blobs sit lower than the daylit
-     blues did or the whole sky washes out. */
   --blob-alpha: 0.62;
 }
+
 
 * {
   min-width: 0;
