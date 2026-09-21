@@ -1,19 +1,11 @@
 /* ========================================================================== */
-/*  THE SKY  (moon theme only)                                                */
+/*  THE SKY                                                                   */
 /*                                                                            */
 /*  Stars are two tiled layers of radial gradients rather than elements or a  */
 /*  canvas: no DOM, no JS, nothing to go wrong on hydration, and the same sky */
 /*  on every build. The two tiles are different sizes so they slide past each */
 /*  other instead of repeating as an obvious grid.                            */
 /* ========================================================================== */
-.moon-sky {
-  display: none;
-}
-
-[data-theme="moon"] .moon-sky {
-  display: block;
-}
-
 .moon-stars-fine,
 .moon-stars-bright {
   position: absolute;
@@ -210,12 +202,12 @@
 }
 
 /* A small moon resting on every hairline divider. */
-[data-theme="moon"] .hairline {
+.hairline {
   position: relative;
   overflow: visible;
 }
 
-[data-theme="moon"] .hairline::after {
+.hairline::after {
   content: "";
   position: absolute;
   top: 50%;

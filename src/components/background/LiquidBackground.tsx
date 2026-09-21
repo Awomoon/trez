@@ -47,15 +47,15 @@ export default function LiquidBackground() {
     };
 
     const palette = [
-      triplet("--c-blob-1", [47, 125, 255]),
-      triplet("--c-blob-2", [70, 224, 255]),
-      triplet("--c-blob-3", [122, 107, 255]),
-      triplet("--c-blob-4", [10, 31, 71]),
-      triplet("--c-blob-5", [109, 180, 255]),
+      triplet("--c-blob-1", [104, 96, 150]),
+      triplet("--c-blob-2", [166, 172, 200]),
+      triplet("--c-blob-3", [78, 74, 122]),
+      triplet("--c-blob-4", [22, 24, 42]),
+      triplet("--c-blob-5", [132, 128, 176]),
     ];
 
     const blobAlpha = Number(css.getPropertyValue("--blob-alpha")) || 1;
-    const pageColour = css.getPropertyValue("--color-abyss").trim() || "#01050e";
+    const pageColour = css.getPropertyValue("--color-abyss").trim() || "#04050c";
 
     let width = 0;
     let height = 0;

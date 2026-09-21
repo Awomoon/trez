@@ -19,7 +19,7 @@ type Piece = {
 /* Read off the stylesheet so the confetti belongs to whichever theme is on.
    Resolved on first use rather than at module load, because the theme is set
    on <html> before React mounts but after this file is parsed. */
-const FALLBACK = ["#2f7dff", "#46e0ff", "#6db4ff", "#7a6bff", "#cfe9ff", "#ffffff"];
+const FALLBACK = ["#a89fd6", "#e6e9f5", "#c9cee0", "#9287c9", "#d3d7e6", "#ffffff"];
 
 let cached: string[] | null = null;
 
