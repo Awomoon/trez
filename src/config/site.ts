@@ -342,6 +342,25 @@ export const site = {
      * copied link is ignored, so it never reaches the page.
      */
     playlistUrl: "https://open.spotify.com/playlist/3SnUzkEZrZvNjxaYUUG9kD",
+
+    /**
+     * Matching profile pictures, shown with the playlist. Empty the list to
+     * drop them.
+     */
+    pair: {
+      label: "Matching",
+      note: "I kinda wish we could use these together.",
+      images: [
+        {
+          src: "/pair-blue.jpg",
+          alt: "A boy with dark hair in blue, holding up two fingers",
+        },
+        {
+          src: "/pair-pink.jpg",
+          alt: "A girl with long hair in pink, winking and holding up two fingers",
+        },
+      ],
+    },
   },
 
   /** The closing lines under the last greeting. */
