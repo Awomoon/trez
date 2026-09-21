@@ -6,7 +6,7 @@ import { site } from "@/config/site";
 import {
   hasStoredUnlock,
   isUnlockable,
-  readPreviewFlags,
+  readLockFlags,
   storeUnlock,
 } from "@/lib/lock";
 
@@ -60,12 +60,7 @@ export default function Page() {
   useEffect(() => {
     if (!lockEnabled) return;
 
-    const { preview, override } = readPreviewFlags();
-
-    if (preview) {
-      setGate("open");
-      return;
-    }
+    const { override } = readLockFlags();
 
     // An explicit ?lock= always wins, including over a previous unlock, so a
     // state can be looked at twice without clearing anything in between.
