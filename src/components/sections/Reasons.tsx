@@ -56,10 +56,9 @@ export default function Reasons() {
               interactive
               className="group flex h-full flex-col gap-4 rounded-[1.75rem] p-7 sm:p-8"
             >
-              <div className="flex items-center justify-between">
-                <span className="text-2xl" aria-hidden>
-                  {reason.emoji}
-                </span>
+              {/* The emoji live inside the titles now, so the old badge in
+                  this row would only repeat them. */}
+              <div className="flex justify-end">
                 <span className="font-mono text-[0.6rem] tracking-[0.25em] text-ice/35">
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -69,9 +68,16 @@ export default function Reasons() {
                 {reason.title}
               </h3>
 
-              <p className="text-sm leading-relaxed text-ice/65">
-                {reason.body}
-              </p>
+              <div className="flex flex-col gap-3">
+                {reason.paragraphs.map((paragraph) => (
+                  <p
+                    key={paragraph}
+                    className="text-sm leading-relaxed text-ice/65"
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
             </GlassPanel>
           </li>
         ))}
