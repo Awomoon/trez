@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap, prefersReducedMotion, ScrollTrigger } from "@/lib/gsap";
 import { site } from "@/config/site";
 import { burstConfetti } from "@/components/effects/confetti";
 import { playlistId } from "@/lib/spotify";
@@ -58,6 +58,24 @@ export default function Footer() {
 
     // The gift adds a screen of height below everything else.
     ScrollTrigger.refresh();
+
+    if (prefersReducedMotion()) return;
+
+    // The bubbles drift once they have landed. Staggering keeps them out of
+    // step with each other, which is what stops it looking mechanical.
+    const ctx = gsap.context(() => {
+      gsap.to("[data-float]", {
+        y: -12,
+        duration: 2.8,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+        delay: 1.4,
+        stagger: 0.7,
+      });
+    }, scope!);
+
+    return () => ctx.revert();
   }, [opened]);
 
   return (
@@ -106,20 +124,34 @@ export default function Footer() {
                   {surprise.pair.label}
                 </p>
 
-                {/* Two avatars, not one picture: they get their own frames. */}
-                <div data-gift-line className="grid grid-cols-2 gap-2 sm:gap-3">
+                {/* Two avatars, not one picture: a bubble each. */}
+                <div
+                  data-gift-line
+                  className="flex items-center justify-center gap-6 px-2 py-4 sm:gap-10 sm:py-6"
+                >
                   {surprise.pair.images.map((image) => (
-                    <div
-                      key={image.src}
-                      className="relative aspect-square overflow-hidden rounded-[1rem] bg-black"
-                    >
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        fill
-                        sizes="(max-width: 640px) 50vw, 288px"
-                        className="object-cover"
-                      />
+                    <div key={image.src} data-float className="relative">
+                      <div
+                        className="relative h-28 w-28 overflow-hidden rounded-full bg-black sm:h-36 sm:w-36"
+                        style={{
+                          boxShadow: `0 0 0 1px rgb(${image.tint} / 0.55), 0 0 0 5px rgb(${image.tint} / 0.12), 0 18px 34px -14px rgb(1 5 14 / 0.9), 0 0 46px -10px rgb(${image.tint} / 0.55)`,
+                        }}
+                      >
+                        {/* Zoomed in, or the circle frames a shoulder
+                            rather than a face. The picture and the bubble
+                            are both square, so nothing overflows and
+                            object-position has nothing to move: the zoom is
+                            what crops, and `focus` is the point it pulls
+                            towards. */}
+                        <Image
+                          src={image.src}
+                          alt={image.alt}
+                          fill
+                          sizes="144px"
+                          style={{ transformOrigin: image.focus }}
+                          className="scale-[1.35] object-cover"
+                        />
+                      </div>
                     </div>
                   ))}
                 </div>

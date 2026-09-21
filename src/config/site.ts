@@ -354,10 +354,16 @@ export const site = {
         {
           src: "/pair-blue.jpg",
           alt: "A boy with dark hair in blue, holding up two fingers",
+          /** Ring and glow around the bubble. */
+          tint: "93 169 255",
+          /** Which part of the picture the circle should sit on. */
+          focus: "58% 33%",
         },
         {
           src: "/pair-pink.jpg",
           alt: "A girl with long hair in pink, winking and holding up two fingers",
+          tint: "255 79 163",
+          focus: "67% 35%",
         },
       ],
     },
