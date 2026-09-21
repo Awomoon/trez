@@ -201,7 +201,7 @@ export default function TimeCapsule() {
             onClick={handleOpen}
             disabled={open}
             aria-label={open ? "Capsule opened" : capsule.buttonSealed}
-            className="absolute left-1/2 top-[44%] z-[5] flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/40 bg-gradient-to-br from-cyan/70 via-azure/70 to-violet/70 shadow-[inset_0_2px_0_rgba(255,255,255,0.5),0_0_40px_-6px_rgba(70,224,255,0.9)] transition-transform duration-300 hover:scale-105 disabled:cursor-default"
+            className="absolute left-1/2 top-[44%] z-[5] flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/40 bg-gradient-to-br from-cyan/70 via-azure/70 to-violet/70 shadow-[inset_0_2px_0_rgba(255,255,255,0.5),0_0_40px_-6px_rgb(var(--c-glow)/0.9)] transition-transform duration-300 hover:scale-105 disabled:cursor-default"
           >
             <span className="display text-2xl text-white drop-shadow">
               {capsule.sealInitial}
@@ -242,7 +242,7 @@ export default function TimeCapsule() {
                     >
                       <span
                         aria-hidden
-                        className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan shadow-[0_0_10px_rgba(70,224,255,0.9)]"
+                        className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan shadow-[0_0_10px_rgb(var(--c-glow)/0.9)]"
                       />
                       {wish}
                     </li>

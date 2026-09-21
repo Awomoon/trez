@@ -39,7 +39,7 @@ function Tile({ label, value }: { label: string; value: number }) {
       <span className="flex h-full w-full flex-col items-center justify-center overflow-hidden">
         <span
           ref={digits}
-          className="display text-[clamp(2rem,8vw,4.25rem)] tabular-nums text-frost drop-shadow-[0_0_24px_rgba(70,224,255,0.35)]"
+          className="display text-[clamp(2rem,8vw,4.25rem)] tabular-nums text-frost drop-shadow-[0_0_24px_rgb(var(--c-glow)/0.35)]"
         >
           {pad(value)}
         </span>

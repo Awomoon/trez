@@ -123,7 +123,7 @@ export default function Outro() {
           className="glass rounded-[2rem] px-6 py-10 text-center sm:px-12 sm:py-14"
           style={{
             boxShadow:
-              "inset 0 1px 0 0 rgb(255 255 255 / 0.32), inset 0 0 0 1px rgb(29 185 84 / 0.22), 0 24px 60px -26px rgb(1 5 14 / 0.95), 0 0 90px -30px rgb(29 185 84 / 0.7)",
+              "inset 0 1px 0 0 rgb(255 255 255 / 0.32), inset 0 0 0 1px rgb(29 185 84 / 0.22), 0 24px 60px -26px rgb(var(--c-ink) / 0.95), 0 0 90px -30px rgb(29 185 84 / 0.7)",
           }}
         >
           <div className="relative z-[3]">

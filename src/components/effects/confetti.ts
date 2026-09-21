@@ -16,14 +16,28 @@ type Piece = {
   shape: "rect" | "circle" | "ribbon";
 };
 
-const COLORS = [
-  "#2f7dff",
-  "#46e0ff",
-  "#6db4ff",
-  "#7a6bff",
-  "#cfe9ff",
-  "#ffffff",
-];
+/* Read off the stylesheet so the confetti belongs to whichever theme is on.
+   Resolved on first use rather than at module load, because the theme is set
+   on <html> before React mounts but after this file is parsed. */
+const FALLBACK = ["#2f7dff", "#46e0ff", "#6db4ff", "#7a6bff", "#cfe9ff", "#ffffff"];
+
+let cached: string[] | null = null;
+
+function colors(): string[] {
+  if (cached) return cached;
+  const css = getComputedStyle(document.documentElement);
+  const read = (name: string, fallback: string) =>
+    css.getPropertyValue(name).trim() || fallback;
+  cached = [
+    read("--color-azure", FALLBACK[0]),
+    read("--color-cyan", FALLBACK[1]),
+    read("--color-sky", FALLBACK[2]),
+    read("--color-violet", FALLBACK[3]),
+    read("--color-ice", FALLBACK[4]),
+    "#ffffff",
+  ];
+  return cached;
+}
 
 export function burstConfetti(
   origin: { x: number; y: number },
@@ -48,6 +62,7 @@ export function burstConfetti(
   }
   ctx.scale(dpr, dpr);
 
+  const palette = colors();
   const shapes: Piece["shape"][] = ["rect", "circle", "ribbon"];
   const pieces: Piece[] = Array.from({ length: count }, () => {
     const angle = Math.random() * Math.PI * 2;
@@ -60,7 +75,7 @@ export function burstConfetti(
       size: 4 + Math.random() * 7,
       rotation: Math.random() * Math.PI,
       spin: (Math.random() - 0.5) * 0.3,
-      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      color: palette[Math.floor(Math.random() * palette.length)],
       life: 1,
       shape: shapes[Math.floor(Math.random() * shapes.length)],
     };

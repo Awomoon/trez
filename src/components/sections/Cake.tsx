@@ -312,7 +312,7 @@ export default function Cake() {
                 className="relative mb-1 h-7 w-3.5 origin-bottom"
               >
                 <span
-                  className={`absolute inset-0 rounded-[50%_50%_50%_50%/72%_72%_30%_30%] bg-gradient-to-t from-azure via-cyan to-white shadow-[0_0_18px_rgba(70,224,255,0.9)] ${
+                  className={`absolute inset-0 rounded-[50%_50%_50%_50%/72%_72%_30%_30%] bg-gradient-to-t from-azure via-cyan to-white shadow-[0_0_18px_rgb(var(--c-glow)/0.9)] ${
                     isLit ? "animate-[flicker_1.1s_ease-in-out_infinite]" : ""
                   }`}
                 />
@@ -328,7 +328,7 @@ export default function Cake() {
               {/* Candle body, with a barber-pole stripe. */}
               <span
                 aria-hidden
-                className="h-16 w-3 rounded-t-[3px] border border-white/30 bg-gradient-to-b from-white/40 via-white/14 to-white/6 shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_0_20px_-6px_rgba(70,224,255,0.6)] backdrop-blur-sm transition-transform duration-300 group-hover:enabled:-translate-y-0.5 sm:w-3.5"
+                className="h-16 w-3 rounded-t-[3px] border border-white/30 bg-gradient-to-b from-white/40 via-white/14 to-white/6 shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_0_20px_-6px_rgb(var(--c-glow)/0.6)] backdrop-blur-sm transition-transform duration-300 group-hover:enabled:-translate-y-0.5 sm:w-3.5"
                 style={{
                   backgroundImage:
                     "repeating-linear-gradient(-58deg,rgba(255,255,255,0.22) 0 3px,transparent 3px 9px)",
@@ -367,7 +367,7 @@ export default function Cake() {
         />
         <div
           aria-hidden
-          className="mt-2 h-10 w-[125%] rounded-[50%] bg-[radial-gradient(closest-side,rgba(70,224,255,0.3),transparent_72%)] blur-lg"
+          className="mt-2 h-10 w-[125%] rounded-[50%] bg-[radial-gradient(closest-side,rgb(var(--c-glow)/0.3),transparent_72%)] blur-lg"
         />
       </div>
 

@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./moon.css";
 
 /* ========================================================================== */
 /*  THEME TOKENS                                                              */
@@ -33,6 +34,63 @@
   color-scheme: dark;
   --glass-tint: 255 255 255;
   --nav-h: 4.5rem;
+
+  /* ---------------------------------------------------------------------- */
+  /*  Semantic colour, as space separated triplets so any alpha can be       */
+  /*  mixed in at the point of use: rgb(var(--c-glow) / 0.4).                */
+  /*                                                                        */
+  /*  Every glow, rim, shadow and gradient in the site goes through these    */
+  /*  four, which is what lets a whole theme swap happen in one block.       */
+  /* ---------------------------------------------------------------------- */
+  --c-glow: 70 224 255; /* the bright one: rims, highlights, hairlines */
+  --c-accent: 47 125 255; /* the carrying colour: outer glows */
+  --c-violet: 122 107 255; /* the second accent in gradients */
+  --c-ink: 1 5 14; /* the bottom of every shadow */
+
+  /* The blobs behind the glass. */
+  --c-blob-1: 47 125 255;
+  --c-blob-2: 70 224 255;
+  --c-blob-3: 122 107 255;
+  --c-blob-4: 10 31 71;
+  --c-blob-5: 109 180 255;
+  --blob-alpha: 1;
+}
+
+/* ========================================================================== */
+/*  MOONLIT                                                                   */
+/*                                                                            */
+/*  Same site, seen at night. Nothing here changes a layout, a size or a      */
+/*  timing: it is the palette and the light, and nothing else.                */
+/*                                                                            */
+/*  The brief was no dominant blue, so the carrying colour is a soft lavender */
+/*  and the bright one is plain moonlight, which is close to white with the   */
+/*  warmth taken out. Blue survives only as the cold at the bottom of the     */
+/*  sky, which is what a night actually looks like.                           */
+/* ========================================================================== */
+[data-theme="moon"] {
+  --color-abyss: #04050c;
+  --color-deep: #0a0c18;
+  --color-navy: #171a2c;
+  --color-azure: #a89fd6;
+  --color-sky: #c9cee0;
+  --color-cyan: #e6e9f5;
+  --color-ice: #d3d7e6;
+  --color-frost: #f6f7fb;
+  --color-violet: #9287c9;
+
+  --c-glow: 230 233 245;
+  --c-accent: 168 159 214;
+  --c-violet: 146 135 201;
+  --c-ink: 2 3 9;
+
+  --c-blob-1: 104 96 150;
+  --c-blob-2: 166 172 200;
+  --c-blob-3: 78 74 122;
+  --c-blob-4: 22 24 42;
+  --c-blob-5: 132 128 176;
+  /* Moonlight is reflected light, so the blobs sit lower than the daylit
+     blues did or the whole sky washes out. */
+  --blob-alpha: 0.62;
 }
 
 * {
@@ -96,17 +154,17 @@ body {
       rgb(var(--glass-tint) / 0.14) 0%,
       rgb(var(--glass-tint) / 0.05) 38%,
       rgb(var(--glass-tint) / 0.02) 62%,
-      rgb(70 224 255 / 0.07) 100%
+      rgb(var(--c-glow) / 0.07) 100%
     );
   backdrop-filter: blur(24px) saturate(185%) brightness(1.06);
   -webkit-backdrop-filter: blur(24px) saturate(185%) brightness(1.06);
   box-shadow:
     inset 0 1px 0 0 rgb(255 255 255 / 0.35),
     inset 0 0 0 1px rgb(255 255 255 / 0.07),
-    inset 0 -18px 32px -24px rgb(70 224 255 / 0.55),
-    0 1px 1px -0.5px rgb(1 5 14 / 0.6),
-    0 18px 40px -22px rgb(1 5 14 / 0.9),
-    0 0 60px -30px rgb(47 125 255 / 0.55);
+    inset 0 -18px 32px -24px rgb(var(--c-glow) / 0.55),
+    0 1px 1px -0.5px rgb(var(--c-ink) / 0.6),
+    0 18px 40px -22px rgb(var(--c-ink) / 0.9),
+    0 0 60px -30px rgb(var(--c-accent) / 0.55);
 
   /* The refracting edge: a gradient ring drawn only in the 1px border box. */
 &::before {
@@ -118,9 +176,9 @@ body {
     background: conic-gradient(
       from 210deg,
       rgb(255 255 255 / 0.5) 0deg,
-      rgb(70 224 255 / 0.28) 70deg,
+      rgb(var(--c-glow) / 0.28) 70deg,
       rgb(255 255 255 / 0.06) 150deg,
-      rgb(122 107 255 / 0.32) 230deg,
+      rgb(var(--c-violet) / 0.32) 230deg,
       rgb(255 255 255 / 0.55) 310deg,
       rgb(255 255 255 / 0.5) 360deg
     );
@@ -173,10 +231,10 @@ body {
     box-shadow:
       inset 0 1px 0 0 rgb(255 255 255 / 0.5),
       inset 0 0 0 1px rgb(255 255 255 / 0.1),
-      inset 0 -22px 40px -26px rgb(70 224 255 / 0.8),
-      0 1px 1px -0.5px rgb(1 5 14 / 0.6),
-      0 30px 60px -26px rgb(1 5 14 / 0.95),
-      0 0 90px -34px rgb(47 125 255 / 0.85);
+      inset 0 -22px 40px -26px rgb(var(--c-glow) / 0.8),
+      0 1px 1px -0.5px rgb(var(--c-ink) / 0.6),
+      0 30px 60px -26px rgb(var(--c-ink) / 0.95),
+      0 0 90px -34px rgb(var(--c-accent) / 0.85);
   }
 
   &:hover::after,
@@ -236,7 +294,7 @@ body {
     90deg,
     transparent,
     rgb(255 255 255 / 0.22) 30%,
-    rgb(70 224 255 / 0.4) 50%,
+    rgb(var(--c-glow) / 0.4) 50%,
     rgb(255 255 255 / 0.22) 70%,
     transparent
   );
