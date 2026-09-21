@@ -125,9 +125,17 @@ export default function Footer() {
                   <p
                     data-gift-line
                     /* Tinted like the card's rim, the way the playlist's
-                       label is tinted green. */
+                       label is tinted green. Set here rather than as classes
+                       because `eyebrow` is a utility too, so a class would be
+                       a coin toss on source order. Caps are off so his
+                       capital US actually reads as one, and the tracking
+                       comes in to suit mixed case. */
                     className="eyebrow px-2 pb-1 pt-1"
-                    style={{ color: "rgb(93 169 255)" }}
+                    style={{
+                      color: "rgb(93 169 255)",
+                      textTransform: "none",
+                      letterSpacing: "0.16em",
+                    }}
                   >
                     {surprise.pair.label}
                   </p>
