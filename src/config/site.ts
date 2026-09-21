@@ -345,6 +345,37 @@ export const site = {
     signoff: "Made with far too much care \u00B7 October 8",
   },
 
+  /* ---------------------------------------------------------------------- */
+  /*  THE LOCK                                                               */
+  /*                                                                         */
+  /*  Until `unlocksOn`, the whole site is replaced by a lock screen showing */
+  /*  nothing but the countdown. From that date the passcode pad appears.    */
+  /*                                                                         */
+  /*  IMPORTANT: this hides the site, it does not encrypt it. The words are  */
+  /*  still inside the page's JavaScript, so anyone who opens the browser    */
+  /*  developer tools could read them. It will stop a curious person; it     */
+  /*  will not stop a determined one.                                        */
+  /*                                                                         */
+  /*  Set `enabled: false` to take the lock off entirely.                    */
+  /* ---------------------------------------------------------------------- */
+  lock: {
+    enabled: true,
+
+    /** Local midnight on this date is when the passcode pad appears. */
+    unlocksOn: "2026-10-08",
+
+    passcode: "2008",
+
+    /** Shown while it is still counting down. */
+    lockedLabel: "Locked until October 8",
+    lockedNote: "Come back on your birthday.",
+
+    /** Shown once the date arrives. */
+    promptLabel: "Enter Passcode",
+    wrongLabel: "Wrong passcode",
+    hint: "Four numbers. You already know them.",
+  },
+
   /** Final send-off. */
   closing: {
     title: "Make a wish",
