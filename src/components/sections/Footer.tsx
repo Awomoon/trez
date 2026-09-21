@@ -121,8 +121,11 @@ export default function Footer() {
               }}
             >
               <div className="relative z-[3]">
-                <p data-gift-line className="eyebrow px-2 pb-3 pt-1">
-                  {surprise.pair.label}
+                <p
+                  data-gift-line
+                  className="display px-2 pb-1 pt-1 text-[1.5rem] text-frost sm:text-[1.75rem]"
+                >
+                  {surprise.pair.title}
                 </p>
 
                 {/* Two avatars, not one picture: a bubble each. */}

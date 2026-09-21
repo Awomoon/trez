@@ -348,8 +348,8 @@ export const site = {
      * drop them.
      */
     pair: {
-      label: "Matching",
-      note: "I kinda wish we could use these together.",
+      title: "matching pfp I found",
+      note: "I came across these on Pinterest and immediately thought you’d like them 😭. I kinda wish we could use them together.",
       images: [
         {
           src: "/pair-blue.jpg",
