@@ -11,6 +11,7 @@ import {
 } from "@/lib/lock";
 
 import LiquidBackground from "@/components/background/LiquidBackground";
+import MoonSky from "@/components/background/MoonSky";
 import GrainOverlay from "@/components/background/GrainOverlay";
 import GlassFilters from "@/components/background/GlassFilters";
 
@@ -103,6 +104,7 @@ export default function Page() {
     <>
       <GlassFilters />
       <LiquidBackground />
+      <MoonSky />
       <GrainOverlay />
 
       {gate === "locked" && (

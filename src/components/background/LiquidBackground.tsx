@@ -32,13 +32,30 @@ export default function LiquidBackground() {
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+    /* The colours come from the stylesheet rather than from here, so the
+       canvas changes with the theme along with everything else. Read once:
+       the theme is set on <html> before React mounts and only changes on a
+       reload. */
+    const css = getComputedStyle(document.documentElement);
+    const triplet = (name: string, fallback: number[]) => {
+      const raw = css.getPropertyValue(name).trim();
+      if (!raw) return fallback;
+      const parts = raw.split(/[\s,]+/).map(Number);
+      return parts.length === 3 && parts.every((n) => !Number.isNaN(n))
+        ? parts
+        : fallback;
+    };
+
     const palette = [
-      [47, 125, 255], // azure
-      [70, 224, 255], // cyan
-      [122, 107, 255], // violet
-      [10, 31, 71], // navy
-      [109, 180, 255], // sky
+      triplet("--c-blob-1", [47, 125, 255]),
+      triplet("--c-blob-2", [70, 224, 255]),
+      triplet("--c-blob-3", [122, 107, 255]),
+      triplet("--c-blob-4", [10, 31, 71]),
+      triplet("--c-blob-5", [109, 180, 255]),
     ];
+
+    const blobAlpha = Number(css.getPropertyValue("--blob-alpha")) || 1;
+    const pageColour = css.getPropertyValue("--color-abyss").trim() || "#01050e";
 
     let width = 0;
     let height = 0;
@@ -66,7 +83,7 @@ export default function LiquidBackground() {
       pointer.current.x += (pointer.current.tx - pointer.current.x) * 0.04;
       pointer.current.y += (pointer.current.ty - pointer.current.y) * 0.04;
 
-      ctx.fillStyle = "#01050e";
+      ctx.fillStyle = pageColour;
       ctx.fillRect(0, 0, width, height);
       ctx.globalCompositeOperation = "lighter";
 
@@ -90,9 +107,10 @@ export default function LiquidBackground() {
         const radius = (blob.r + wobble) * width;
 
         const [r, g, b] = palette[blob.hue];
+        const a = blob.alpha * blobAlpha;
         const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
-        gradient.addColorStop(0, `rgba(${r},${g},${b},${blob.alpha})`);
-        gradient.addColorStop(0.55, `rgba(${r},${g},${b},${blob.alpha * 0.28})`);
+        gradient.addColorStop(0, `rgba(${r},${g},${b},${a})`);
+        gradient.addColorStop(0.55, `rgba(${r},${g},${b},${a * 0.28})`);
         gradient.addColorStop(1, `rgba(${r},${g},${b},0)`);
 
         ctx.fillStyle = gradient;
@@ -137,7 +155,7 @@ export default function LiquidBackground() {
         className="absolute inset-0 h-full w-full scale-110 blur-[60px] saturate-[1.35]"
       />
       {/* Vignette so the edges of the viewport stay deep and the glass pops. */}
-      <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_0%,transparent_20%,rgba(1,5,14,0.55)_70%,rgba(1,5,14,0.92)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_0%,transparent_20%,rgb(var(--c-ink)/0.55)_70%,rgb(var(--c-ink)/0.92)_100%)]" />
     </div>
   );
 }

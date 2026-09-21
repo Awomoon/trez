@@ -117,7 +117,7 @@ export default function Footer() {
               className="glass rounded-[1.5rem] p-3 sm:p-4"
               style={{
                 boxShadow:
-                  "inset 0 1px 0 0 rgb(255 255 255 / 0.3), inset 0 0 0 1px rgb(93 169 255 / 0.24), 0 22px 50px -22px rgb(1 5 14 / 0.92), 0 0 80px -24px rgb(93 169 255 / 0.55)",
+                  "inset 0 1px 0 0 rgb(255 255 255 / 0.3), inset 0 0 0 1px rgb(var(--c-accent) / 0.24), 0 22px 50px -22px rgb(var(--c-ink) / 0.92), 0 0 80px -24px rgb(var(--c-accent) / 0.55)",
               }}
             >
               <div className="relative z-[3]">
@@ -132,7 +132,7 @@ export default function Footer() {
                        comes in to suit mixed case. */
                     className="eyebrow px-2 pb-1 pt-1"
                     style={{
-                      color: "rgb(93 169 255)",
+                      color: "rgb(var(--c-accent))",
                       textTransform: "none",
                       letterSpacing: "0.16em",
                     }}
@@ -158,7 +158,7 @@ export default function Footer() {
                       <div
                         className="relative h-28 w-28 overflow-hidden rounded-full bg-black sm:h-36 sm:w-36"
                         style={{
-                          boxShadow: `0 0 0 1px rgb(${image.tint} / 0.55), 0 0 0 5px rgb(${image.tint} / 0.12), 0 18px 34px -14px rgb(1 5 14 / 0.9), 0 0 46px -10px rgb(${image.tint} / 0.55)`,
+                          boxShadow: `0 0 0 1px rgb(${image.tint} / 0.55), 0 0 0 5px rgb(${image.tint} / 0.12), 0 18px 34px -14px rgb(var(--c-ink) / 0.9), 0 0 46px -10px rgb(${image.tint} / 0.55)`,
                         }}
                       >
                         {/* Zoomed in, or the circle frames a shoulder
@@ -186,7 +186,7 @@ export default function Footer() {
                 >
                   <span
                     aria-hidden
-                    className="mt-1.5 h-4 w-[2px] shrink-0 rounded-full bg-[rgb(93_169_255)]"
+                    className="mt-1.5 h-4 w-[2px] shrink-0 rounded-full bg-[rgb(var(--c-accent))]"
                   />
                   {surprise.pair.note}
                 </p>
@@ -199,7 +199,7 @@ export default function Footer() {
             className="glass rounded-[1.5rem] p-3 sm:p-4"
             style={{
               boxShadow:
-                "inset 0 1px 0 0 rgb(255 255 255 / 0.3), inset 0 0 0 1px rgb(29 185 84 / 0.24), 0 22px 50px -22px rgb(1 5 14 / 0.92), 0 0 80px -24px rgb(29 185 84 / 0.7)",
+                "inset 0 1px 0 0 rgb(255 255 255 / 0.3), inset 0 0 0 1px rgb(29 185 84 / 0.24), 0 22px 50px -22px rgb(var(--c-ink) / 0.92), 0 0 80px -24px rgb(29 185 84 / 0.7)",
             }}
           >
             <div className="relative z-[3]">

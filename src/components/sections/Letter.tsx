@@ -157,7 +157,7 @@ export default function Letter() {
                 strokeLinejoin="round"
                 strokeDasharray="1200"
                 strokeDashoffset="1200"
-                style={{ filter: "drop-shadow(0 0 10px rgba(70,224,255,0.55))" }}
+                style={{ filter: "drop-shadow(0 0 10px rgb(var(--c-glow)/0.55))" }}
               />
             </svg>
           </div>

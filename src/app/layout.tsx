@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Instrument_Serif, Geist, Geist_Mono } from "next/font/google";
 import { site } from "@/config/site";
+import { themeScript } from "@/lib/theme";
 import "./globals.css";
 
 const display = Instrument_Serif({
@@ -52,6 +53,11 @@ export default function RootLayout({
       lang="en"
       className={`${display.variable} ${sans.variable} ${mono.variable}`}
     >
+      <head>
+        {/* Blocking on purpose: the theme must be on <html> before the first
+            paint, or the page flashes one look and swaps to the other. */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="antialiased">{children}</body>
     </html>
   );

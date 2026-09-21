@@ -25,7 +25,7 @@ export default function ScrollProgress() {
     >
       <div
         ref={bar}
-        className="h-full origin-left scale-x-0 bg-gradient-to-r from-azure via-cyan to-violet shadow-[0_0_12px_rgba(70,224,255,0.9)]"
+        className="h-full origin-left scale-x-0 bg-gradient-to-r from-azure via-cyan to-violet shadow-[0_0_12px_rgb(var(--c-glow)/0.9)]"
       />
     </div>
   );

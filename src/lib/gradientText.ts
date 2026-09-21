@@ -2,8 +2,10 @@
 
 import { gsap } from "@/lib/gsap";
 
+/* Through the tokens rather than fixed hexes, so the name belongs to
+   whichever theme is on. */
 const GRADIENT =
-  "linear-gradient(100deg,#eef7ff 0%,#cfe9ff 20%,#ffffff 36%,#46e0ff 52%,#6db4ff 68%,#eef7ff 100%)";
+  "linear-gradient(100deg,var(--color-frost) 0%,var(--color-ice) 20%,#ffffff 36%,var(--color-cyan) 52%,var(--color-sky) 68%,var(--color-frost) 100%)";
 
 /**
  * `background-clip: text` only paints against the element that owns the

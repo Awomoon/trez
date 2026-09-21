@@ -53,7 +53,7 @@ export default function CustomCursor() {
       gsap.to(lensEl, {
         scale: target ? 2.1 : 1,
         borderColor: target
-          ? "rgba(70,224,255,0.75)"
+          ? "rgb(var(--c-glow)/0.75)"
           : "rgba(255,255,255,0.35)",
         duration: 0.45,
         overwrite: "auto",

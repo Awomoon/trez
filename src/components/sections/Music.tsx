@@ -96,7 +96,7 @@ export default function Music() {
               style={{
                 // A green rim and bloom instead of the site's cyan one.
                 boxShadow:
-                  "inset 0 1px 0 0 rgb(255 255 255 / 0.3), inset 0 0 0 1px rgb(29 185 84 / 0.18), 0 18px 40px -22px rgb(1 5 14 / 0.9), 0 0 60px -28px rgb(29 185 84 / 0.55)",
+                  "inset 0 1px 0 0 rgb(255 255 255 / 0.3), inset 0 0 0 1px rgb(29 185 84 / 0.18), 0 18px 40px -22px rgb(var(--c-ink) / 0.9), 0 0 60px -28px rgb(29 185 84 / 0.55)",
               }}
             >
               <div className="relative z-[3]">

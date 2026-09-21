@@ -1,0 +1,229 @@
+/* ========================================================================== */
+/*  THE SKY  (moon theme only)                                                */
+/*                                                                            */
+/*  Stars are two tiled layers of radial gradients rather than elements or a  */
+/*  canvas: no DOM, no JS, nothing to go wrong on hydration, and the same sky */
+/*  on every build. The two tiles are different sizes so they slide past each */
+/*  other instead of repeating as an obvious grid.                            */
+/* ========================================================================== */
+.moon-sky {
+  display: none;
+}
+
+[data-theme="moon"] .moon-sky {
+  display: block;
+}
+
+.moon-stars-fine,
+.moon-stars-bright {
+  position: absolute;
+  inset: -10%;
+}
+
+.moon-stars-fine {
+  background-image: radial-gradient(1px 1px at 116px 189px, rgb(255 255 255 / 0.83), transparent 100%),
+    radial-gradient(1px 1px at 64px 98px, rgb(255 255 255 / 0.7), transparent 100%),
+    radial-gradient(1px 1px at 43px 70px, rgb(255 255 255 / 0.47), transparent 100%),
+    radial-gradient(1px 1px at 259px 107px, rgb(255 255 255 / 0.55), transparent 100%),
+    radial-gradient(1px 1px at 15px 235px, rgb(255 255 255 / 0.59), transparent 100%),
+    radial-gradient(1px 1px at 199px 253px, rgb(255 255 255 / 0.64), transparent 100%),
+    radial-gradient(1px 1px at 206px 45px, rgb(255 255 255 / 0.59), transparent 100%),
+    radial-gradient(1px 1px at 10px 136px, rgb(255 255 255 / 0.61), transparent 100%),
+    radial-gradient(1px 1px at 242px 194px, rgb(255 255 255 / 0.71), transparent 100%),
+    radial-gradient(1px 1px at 132px 49px, rgb(255 255 255 / 0.85), transparent 100%),
+    radial-gradient(1px 1px at 32px 197px, rgb(255 255 255 / 0.66), transparent 100%),
+    radial-gradient(1px 1px at 193px 55px, rgb(255 255 255 / 0.68), transparent 100%),
+    radial-gradient(1px 1px at 173px 120px, rgb(255 255 255 / 0.7), transparent 100%),
+    radial-gradient(1px 1px at 254px 264px, rgb(255 255 255 / 0.8), transparent 100%),
+    radial-gradient(1px 1px at 297px 72px, rgb(255 255 255 / 0.65), transparent 100%),
+    radial-gradient(1px 1px at 276px 19px, rgb(255 255 255 / 0.59), transparent 100%),
+    radial-gradient(1px 1px at 99px 75px, rgb(255 255 255 / 0.82), transparent 100%),
+    radial-gradient(1px 1px at 296px 233px, rgb(255 255 255 / 0.71), transparent 100%),
+    radial-gradient(1px 1px at 227px 146px, rgb(255 255 255 / 0.63), transparent 100%),
+    radial-gradient(1px 1px at 218px 69px, rgb(255 255 255 / 0.43), transparent 100%),
+    radial-gradient(1px 1px at 307px 49px, rgb(255 255 255 / 0.62), transparent 100%),
+    radial-gradient(1px 1px at 160px 182px, rgb(255 255 255 / 0.82), transparent 100%),
+    radial-gradient(1px 1px at 253px 257px, rgb(255 255 255 / 0.66), transparent 100%),
+    radial-gradient(1px 1px at 158px 76px, rgb(255 255 255 / 0.53), transparent 100%),
+    radial-gradient(1px 1px at 145px 261px, rgb(255 255 255 / 0.68), transparent 100%),
+    radial-gradient(1px 1px at 259px 279px, rgb(255 255 255 / 0.46), transparent 100%),
+    radial-gradient(1px 1px at 124px 6px, rgb(255 255 255 / 0.5), transparent 100%),
+    radial-gradient(1px 1px at 112px 136px, rgb(255 255 255 / 0.37), transparent 100%),
+    radial-gradient(1px 1px at 130px 192px, rgb(255 255 255 / 0.5), transparent 100%),
+    radial-gradient(1px 1px at 213px 89px, rgb(255 255 255 / 0.68), transparent 100%),
+    radial-gradient(1px 1px at 59px 85px, rgb(255 255 255 / 0.82), transparent 100%),
+    radial-gradient(1px 1px at 13px 103px, rgb(255 255 255 / 0.84), transparent 100%),
+    radial-gradient(1px 1px at 82px 153px, rgb(255 255 255 / 0.41), transparent 100%),
+    radial-gradient(1px 1px at 194px 175px, rgb(255 255 255 / 0.77), transparent 100%),
+    radial-gradient(1px 1px at 291px 223px, rgb(255 255 255 / 0.8), transparent 100%),
+    radial-gradient(1px 1px at 71px 209px, rgb(255 255 255 / 0.63), transparent 100%),
+    radial-gradient(1px 1px at 208px 213px, rgb(255 255 255 / 0.39), transparent 100%),
+    radial-gradient(1px 1px at 35px 147px, rgb(255 255 255 / 0.71), transparent 100%),
+    radial-gradient(1px 1px at 17px 43px, rgb(255 255 255 / 0.68), transparent 100%),
+    radial-gradient(1px 1px at 266px 269px, rgb(255 255 255 / 0.53), transparent 100%),
+    radial-gradient(1px 1px at 258px 249px, rgb(255 255 255 / 0.7), transparent 100%),
+    radial-gradient(1px 1px at 309px 32px, rgb(255 255 255 / 0.44), transparent 100%),
+    radial-gradient(1px 1px at 71px 174px, rgb(255 255 255 / 0.54), transparent 100%),
+    radial-gradient(1px 1px at 293px 61px, rgb(255 255 255 / 0.72), transparent 100%),
+    radial-gradient(1px 1px at 179px 166px, rgb(255 255 255 / 0.83), transparent 100%),
+    radial-gradient(1px 1px at 1px 255px, rgb(255 255 255 / 0.46), transparent 100%),
+    radial-gradient(1px 1px at 316px 16px, rgb(255 255 255 / 0.79), transparent 100%),
+    radial-gradient(1px 1px at 296px 88px, rgb(255 255 255 / 0.44), transparent 100%),
+    radial-gradient(1px 1px at 220px 226px, rgb(255 255 255 / 0.41), transparent 100%),
+    radial-gradient(1px 1px at 102px 309px, rgb(255 255 255 / 0.46), transparent 100%),
+    radial-gradient(1px 1px at 242px 79px, rgb(255 255 255 / 0.54), transparent 100%),
+    radial-gradient(1px 1px at 55px 297px, rgb(255 255 255 / 0.71), transparent 100%),
+    radial-gradient(1px 1px at 64px 225px, rgb(255 255 255 / 0.61), transparent 100%),
+    radial-gradient(1px 1px at 46px 241px, rgb(255 255 255 / 0.63), transparent 100%),
+    radial-gradient(1px 1px at 184px 233px, rgb(255 255 255 / 0.46), transparent 100%),
+    radial-gradient(1px 1px at 101px 25px, rgb(255 255 255 / 0.57), transparent 100%),
+    radial-gradient(1px 1px at 55px 108px, rgb(255 255 255 / 0.71), transparent 100%),
+    radial-gradient(1px 1px at 307px 313px, rgb(255 255 255 / 0.8), transparent 100%),
+    radial-gradient(1px 1px at 186px 221px, rgb(255 255 255 / 0.61), transparent 100%),
+    radial-gradient(1px 1px at 307px 257px, rgb(255 255 255 / 0.76), transparent 100%),
+    radial-gradient(1px 1px at 291px 102px, rgb(255 255 255 / 0.6), transparent 100%),
+    radial-gradient(1px 1px at 165px 269px, rgb(255 255 255 / 0.54), transparent 100%),
+    radial-gradient(1px 1px at 266px 100px, rgb(255 255 255 / 0.35), transparent 100%),
+    radial-gradient(1px 1px at 313px 151px, rgb(255 255 255 / 0.8), transparent 100%),
+    radial-gradient(1px 1px at 164px 206px, rgb(255 255 255 / 0.46), transparent 100%),
+    radial-gradient(1px 1px at 151px 40px, rgb(255 255 255 / 0.62), transparent 100%),
+    radial-gradient(1px 1px at 189px 164px, rgb(255 255 255 / 0.61), transparent 100%),
+    radial-gradient(1px 1px at 182px 151px, rgb(255 255 255 / 0.68), transparent 100%),
+    radial-gradient(1px 1px at 55px 100px, rgb(255 255 255 / 0.59), transparent 100%),
+    radial-gradient(1px 1px at 193px 299px, rgb(255 255 255 / 0.77), transparent 100%);
+  background-size: 320px 320px;
+  animation: twinkle-a 7s ease-in-out infinite;
+}
+
+.moon-stars-bright {
+  background-image: radial-gradient(2px 2px at 319px 210px, rgb(255 255 255 / 0.6), transparent 100%),
+    radial-gradient(2px 2px at 392px 364px, rgb(255 255 255 / 0.86), transparent 100%),
+    radial-gradient(2px 2px at 370px 437px, rgb(255 255 255 / 0.55), transparent 100%),
+    radial-gradient(2px 2px at 519px 83px, rgb(255 255 255 / 0.58), transparent 100%),
+    radial-gradient(2px 2px at 70px 510px, rgb(255 255 255 / 0.82), transparent 100%),
+    radial-gradient(2px 2px at 277px 429px, rgb(255 255 255 / 0.84), transparent 100%),
+    radial-gradient(2px 2px at 280px 298px, rgb(255 255 255 / 0.59), transparent 100%),
+    radial-gradient(2px 2px at 516px 275px, rgb(255 255 255 / 0.59), transparent 100%),
+    radial-gradient(2px 2px at 421px 250px, rgb(255 255 255 / 0.63), transparent 100%),
+    radial-gradient(2px 2px at 253px 516px, rgb(255 255 255 / 0.82), transparent 100%),
+    radial-gradient(2px 2px at 255px 239px, rgb(255 255 255 / 0.86), transparent 100%),
+    radial-gradient(2px 2px at 200px 376px, rgb(255 255 255 / 0.7), transparent 100%),
+    radial-gradient(2px 2px at 108px 114px, rgb(255 255 255 / 0.64), transparent 100%),
+    radial-gradient(2px 2px at 174px 437px, rgb(255 255 255 / 0.91), transparent 100%),
+    radial-gradient(2px 2px at 140px 22px, rgb(255 255 255 / 0.76), transparent 100%),
+    radial-gradient(2px 2px at 270px 89px, rgb(255 255 255 / 0.5), transparent 100%),
+    radial-gradient(2px 2px at 470px 289px, rgb(255 255 255 / 0.91), transparent 100%),
+    radial-gradient(2px 2px at 94px 129px, rgb(255 255 255 / 0.75), transparent 100%),
+    radial-gradient(2px 2px at 67px 327px, rgb(255 255 255 / 0.85), transparent 100%),
+    radial-gradient(2px 2px at 85px 140px, rgb(255 255 255 / 0.78), transparent 100%),
+    radial-gradient(2px 2px at 375px 76px, rgb(255 255 255 / 0.86), transparent 100%),
+    radial-gradient(2px 2px at 37px 326px, rgb(255 255 255 / 0.56), transparent 100%);
+  background-size: 520px 520px;
+  animation: twinkle-b 11s ease-in-out infinite;
+}
+
+@keyframes twinkle-a {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes twinkle-b {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.5; }
+}
+
+/* The moon: a disc, a long soft halo, and two craters that only just show. */
+.moon-disc {
+  position: absolute;
+  top: clamp(2.5rem, 9vh, 7rem);
+  right: clamp(1.75rem, 9vw, 9rem);
+  width: clamp(5rem, 11vw, 9rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 34% 30%,
+    #ffffff 0%,
+    #eef0f8 42%,
+    #c7cbdd 78%,
+    #a9aec6 100%
+  );
+  box-shadow:
+    0 0 3rem -0.4rem rgb(var(--c-glow) / 0.55),
+    0 0 9rem 1rem rgb(var(--c-glow) / 0.22),
+    0 0 20rem 5rem rgb(var(--c-accent) / 0.16);
+  animation: moon-breathe 12s ease-in-out infinite;
+}
+
+.moon-disc::before,
+.moon-disc::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgb(96 102 130 / 0.30);
+}
+
+.moon-disc::before {
+  width: 22%;
+  aspect-ratio: 1;
+  top: 26%;
+  left: 24%;
+}
+
+.moon-disc::after {
+  width: 13%;
+  aspect-ratio: 1;
+  top: 56%;
+  left: 55%;
+}
+
+@keyframes moon-breathe {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.08); }
+}
+
+/* On a phone the content column is the whole screen, so a moon this size
+   parks itself on top of a card and reads as a smudge rather than a moon.
+   Shrunk and tucked into the corner it stays a moon. */
+@media (max-width: 640px) {
+  .moon-disc {
+    top: 1.1rem;
+    right: 1rem;
+    width: 3.25rem;
+    opacity: 0.82;
+    box-shadow:
+      0 0 1.75rem -0.3rem rgb(var(--c-glow) / 0.5),
+      0 0 5rem 0.5rem rgb(var(--c-glow) / 0.18),
+      0 0 12rem 3rem rgb(var(--c-accent) / 0.14);
+  }
+}
+
+/* The light the moon throws across the top of the page. */
+.moon-wash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    70% 48% at 78% 4%,
+    rgb(var(--c-glow) / 0.13) 0%,
+    rgb(var(--c-accent) / 0.07) 38%,
+    transparent 72%
+  );
+}
+
+/* A small moon resting on every hairline divider. */
+[data-theme="moon"] .hairline {
+  position: relative;
+  overflow: visible;
+}
+
+[data-theme="moon"] .hairline::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgb(var(--c-glow) / 0.85);
+  box-shadow: 0 0 10px 1px rgb(var(--c-glow) / 0.5);
+}
