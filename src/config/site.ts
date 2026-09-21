@@ -336,7 +336,12 @@ export const site = {
     label: "One more gift",
     title: "A playlist, just for you",
     note: "A playlist of songs that remind me of you.",
-    spotifyId: "3SnUzkEZrZvNjxaYUUG9kD",
+
+    /**
+     * Paste the Spotify share link straight in. The tracking on the end of a
+     * copied link is ignored, so it never reaches the page.
+     */
+    playlistUrl: "https://open.spotify.com/playlist/3SnUzkEZrZvNjxaYUUG9kD",
   },
 
   /** The closing lines under the last greeting. */
