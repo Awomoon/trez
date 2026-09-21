@@ -274,17 +274,20 @@ export const site = {
       {
         youtubeId: null,
         spotifyId: "3oNQ6NkihVzQkV5qhk2Pbe",
-        note: "This one is yours. It has been for a while.",
+        note:
+          "This one explains how much you mean to me. Sometimes the way I see you makes you seem almost perfect in my eyes, and honestly, I don’t even know how to properly explain it. This song just puts some of those feelings into words when I can’t.",
       },
       {
         youtubeId: null,
         spotifyId: "39sDitIeCMrVX2QyXHY46t",
-        note: "And this one is ours.",
+        note:
+          "I don’t really know how to explain this one. There’s just something about this song that reminds me of you every single time I hear it. I can’t even point to one specific thing about it, but somehow, it feels like you.",
       },
       {
         youtubeId: null,
         spotifyId: "0WQiDwKJclirSYG9v5tayI",
-        note: "And this one, because some songs only make sense once you know the person.",
+        note:
+          "I remember singing this one to you the first time I heard it. 🥹 And that’s probably why it means a little more to me. It reminds me of how I want to be there with you through whatever comes our way whenever you need me, whatever happens, and wherever life takes us.",
       },
     ] as ReadonlyArray<{
       youtubeId: string | null;
