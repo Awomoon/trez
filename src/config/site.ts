@@ -266,9 +266,24 @@ export const site = {
   /* ---------------------------------------------------------------------- */
   music: {
     eyebrow: "On repeat",
-    title: "Three songs that are just you now",
+    title: "Songs that remind me of you",
     subtitle:
       "Press play. I cannot hear any of these without thinking of you, so now neither can you.",
+
+    /**
+     * The playlist, shown above the individual tracks in Spotify's tall
+     * embed so the track listing is visible and it reads as a playlist
+     * rather than as one more song. Set `spotifyId` to null to hide it.
+     */
+    playlist: {
+      label: "The playlist",
+      note: "A playlist of songs that remind me of you.",
+      spotifyId: "3SnUzkEZrZvNjxaYUUG9kD",
+    },
+
+    /** Shown above the individual tracks, under the playlist. */
+    tracksLabel: "And these three especially",
+
     tracks: [
       {
         youtubeId: null,
