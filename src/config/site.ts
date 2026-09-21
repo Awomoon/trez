@@ -373,7 +373,9 @@ export const site = {
     /** Shown once the date arrives. */
     promptLabel: "Enter Passcode",
     wrongLabel: "Wrong passcode",
-    hint: "Four numbers. You already know them.",
+
+    /** Small line under the keypad. Leave it empty to show nothing. */
+    hint: "",
   },
 
   /** Final send-off. */

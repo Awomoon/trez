@@ -277,7 +277,7 @@ export default function LockScreen({ unlockable, onUnlock }: Props) {
             </button>
           </div>
 
-          {site.lock.hint && (
+          {site.lock.hint.length > 0 && (
             <p className="mt-8 text-center font-mono text-[0.55rem] uppercase tracking-[0.2em] text-ice/30">
               {site.lock.hint}
             </p>
