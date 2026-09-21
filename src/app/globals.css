@@ -347,3 +347,19 @@ body {
     transform: scaleY(1);
   }
 }
+
+/* The surprise button at the very bottom. Green so it reads as a gift
+   rather than as a footer link, and pulsing so it asks to be pressed. */
+@keyframes giftGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 rgb(29 185 84 / 0.5),
+      0 0 28px -8px rgb(29 185 84 / 0.7);
+  }
+  50% {
+    box-shadow:
+      0 0 0 12px rgb(29 185 84 / 0),
+      0 0 48px -6px rgb(29 185 84 / 0.95);
+  }
+}

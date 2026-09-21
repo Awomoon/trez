@@ -270,20 +270,6 @@ export const site = {
     subtitle:
       "Press play. I cannot hear any of these without thinking of you, so now neither can you.",
 
-    /**
-     * The playlist, shown above the individual tracks in Spotify's tall
-     * embed so the track listing is visible and it reads as a playlist
-     * rather than as one more song. Set `spotifyId` to null to hide it.
-     */
-    playlist: {
-      label: "The playlist",
-      note: "A playlist of songs that remind me of you.",
-      spotifyId: "3SnUzkEZrZvNjxaYUUG9kD",
-    },
-
-    /** Shown above the individual tracks, under the playlist. */
-    tracksLabel: "And these three especially",
-
     tracks: [
       {
         youtubeId: null,
@@ -333,6 +319,28 @@ export const site = {
     spotifyId: "0DfHX7TBn8srQlyUS7UUBC",
   },
 
+
+  /* ---------------------------------------------------------------------- */
+  /*  THE SURPRISE                                                           */
+  /*  Hidden until she throws the confetti at the very bottom of the page.   */
+  /*  Deliberately not shown anywhere else, or it stops being a surprise.    */
+  /* ---------------------------------------------------------------------- */
+  surprise: {
+    /** The button, before she has found it. */
+    button: "Throw confetti for a surprise",
+    /** The same button afterwards. */
+    buttonAgain: "Throw more confetti",
+    label: "One more gift",
+    title: "A playlist, just for you",
+    note: "A playlist of songs that remind me of you.",
+    spotifyId: "3SnUzkEZrZvNjxaYUUG9kD",
+  },
+
+  /** The closing lines under the last greeting. */
+  footer: {
+    subtitle: "One more, because you deserve more than one.",
+    signoff: "Made with far too much care \u00B7 October 8",
+  },
 
   /** Final send-off. */
   closing: {
