@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { site } from "@/config/site";
@@ -90,7 +91,54 @@ export default function Footer() {
 
       {/* ---------------- The gift ---------------- */}
       {opened && surprise.playlistUrl && (
-        <div data-gift className="mx-auto mt-14 max-w-xl text-left">
+        <div data-gift className="mx-auto mt-14 max-w-xl space-y-5 text-left">
+          {/* ---- The matching pair ---- */}
+          {surprise.pair.images.length > 0 && (
+            <div
+              className="glass rounded-[1.5rem] p-3 sm:p-4"
+              style={{
+                boxShadow:
+                  "inset 0 1px 0 0 rgb(255 255 255 / 0.3), inset 0 0 0 1px rgb(93 169 255 / 0.24), 0 22px 50px -22px rgb(1 5 14 / 0.92), 0 0 80px -24px rgb(93 169 255 / 0.55)",
+              }}
+            >
+              <div className="relative z-[3]">
+                <p data-gift-line className="eyebrow px-2 pb-3 pt-1">
+                  {surprise.pair.label}
+                </p>
+
+                {/* Two avatars, not one picture: they get their own frames. */}
+                <div data-gift-line className="grid grid-cols-2 gap-2 sm:gap-3">
+                  {surprise.pair.images.map((image) => (
+                    <div
+                      key={image.src}
+                      className="relative aspect-square overflow-hidden rounded-[1rem] bg-black"
+                    >
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        sizes="(max-width: 640px) 50vw, 288px"
+                        className="object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
+
+                <p
+                  data-gift-line
+                  className="mt-4 flex gap-3 px-2 pb-1 text-sm leading-relaxed text-ice/70"
+                >
+                  <span
+                    aria-hidden
+                    className="mt-1.5 h-4 w-[2px] shrink-0 rounded-full bg-[rgb(93_169_255)]"
+                  />
+                  {surprise.pair.note}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* ---- The playlist ---- */}
           <div
             className="glass rounded-[1.5rem] p-3 sm:p-4"
             style={{
