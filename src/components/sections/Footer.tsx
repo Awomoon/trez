@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { site } from "@/config/site";
 import { burstConfetti } from "@/components/effects/confetti";
+import { playlistId } from "@/lib/spotify";
 
 /**
  * The last thing on the page, and the one thing she has to find.
@@ -88,7 +89,7 @@ export default function Footer() {
       </button>
 
       {/* ---------------- The gift ---------------- */}
-      {opened && surprise.spotifyId && (
+      {opened && surprise.playlistUrl && (
         <div data-gift className="mx-auto mt-14 max-w-xl text-left">
           <div
             className="glass rounded-[1.5rem] p-3 sm:p-4"
@@ -124,7 +125,9 @@ export default function Footer() {
                 {/* The tall embed: anything near the 152px a single track uses
                     collapses the playlist to one bar and hides its listing. */}
                 <iframe
-                  src={`https://open.spotify.com/embed/playlist/${surprise.spotifyId}?utm_source=generator&theme=0`}
+                  src={`https://open.spotify.com/embed/playlist/${playlistId(
+                    surprise.playlistUrl,
+                  )}?utm_source=generator&theme=0`}
                   title="A playlist for you"
                   loading="lazy"
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
