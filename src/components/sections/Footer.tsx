@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap, prefersReducedMotion, ScrollTrigger } from "@/lib/gsap";
 import { site } from "@/config/site";
 import { burstConfetti } from "@/components/effects/confetti";
+import { asset } from "@/lib/asset";
 import { playlistId } from "@/lib/spotify";
 
 /**
@@ -144,7 +145,7 @@ export default function Footer() {
                             what crops, and `focus` is the point it pulls
                             towards. */}
                         <Image
-                          src={image.src}
+                          src={asset(image.src)}
                           alt={image.alt}
                           fill
                           sizes="144px"

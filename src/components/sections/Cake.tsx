@@ -240,7 +240,12 @@ export default function Cake() {
     <section
       id="cake"
       ref={root}
-      className="relative mx-auto w-full max-w-4xl scroll-mt-28 px-5 py-20 text-center sm:py-24"
+      /* The plate and its glow are deliberately wider than the cake column,
+         which pushes them past the viewport on a narrow phone. Clipped here
+         rather than narrowed, so the cake keeps its shape. `clip` and not
+         `hidden`: `hidden` would make this a scroll container and break the
+         pinned story section's sticky ancestors. */
+      className="relative mx-auto w-full max-w-4xl scroll-mt-28 overflow-x-clip px-5 py-20 text-center sm:py-24"
     >
       <p data-anim className="eyebrow mb-5">
         {site.closing.title}
