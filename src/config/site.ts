@@ -349,7 +349,7 @@ export const site = {
      */
     pair: {
       /** Small line above the title. Leave it empty to show nothing. */
-      label: "For us",
+      label: "Found this for US",
       title: "matching pfp I found",
       note: "I came across these on Pinterest and immediately thought you’d like them 😭. I kinda wish we could use them together.",
       images: [
