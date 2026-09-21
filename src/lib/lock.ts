@@ -48,26 +48,22 @@ export function clearStoredUnlock(): void {
 export type LockOverride = "before" | "open" | null;
 
 /**
- * Testing switches, so every state can be checked without changing the clock:
+ * Testing switches, since the date cannot be waited for. Neither of these is
+ * a way in: `open` only brings up the passcode pad early, and the code is
+ * still the code. The old `?preview` bypass has been removed.
  *
- *   ?preview      skip the lock entirely and go straight to the site
- *   ?lock=before  force the countdown state, whatever today is
+ *   ?lock=before  force the countdown, whatever today is
  *   ?lock=open    force the passcode pad, whatever today is
  *   ?reset        forget a previous unlock and start over
  */
-export function readPreviewFlags(): {
-  preview: boolean;
-  override: LockOverride;
-} {
-  if (typeof window === "undefined") return { preview: false, override: null };
+export function readLockFlags(): { override: LockOverride } {
+  if (typeof window === "undefined") return { override: null };
 
   const params = new URLSearchParams(window.location.search);
 
   if (params.has("reset")) clearStoredUnlock();
 
   const raw = params.get("lock");
-  const override: LockOverride =
-    raw === "before" || raw === "open" ? raw : null;
 
-  return { preview: params.has("preview"), override };
+  return { override: raw === "before" || raw === "open" ? raw : null };
 }
