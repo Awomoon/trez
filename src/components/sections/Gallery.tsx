@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { site } from "@/config/site";
+import { asset } from "@/lib/asset";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 /**
@@ -82,7 +83,7 @@ export default function Gallery() {
             <div className="relative z-[3] aspect-[4/5] overflow-hidden rounded-[1.35rem]">
               <div data-photo-inner className="absolute -inset-y-[10%] inset-x-0">
                 <Image
-                  src={photo.src}
+                  src={asset(photo.src)}
                   alt={photo.caption}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
