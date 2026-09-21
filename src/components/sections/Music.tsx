@@ -24,16 +24,9 @@ const youtubeUrl = (id: string) =>
 const spotifyUrl = (id: string) =>
   `https://open.spotify.com/embed/track/${id}?utm_source=generator&theme=0`;
 
-// The playlist embed only shows its track listing when it is given room.
-// Anything near Spotify's 152px compact height collapses it to a single bar
-// and it stops reading as a playlist at all.
-const playlistUrl = (id: string) =>
-  `https://open.spotify.com/embed/playlist/${id}?utm_source=generator&theme=0`;
-
 export default function Music() {
   const root = useRef<HTMLElement>(null);
-  const { eyebrow, title, subtitle, playlist, tracksLabel, tracks } =
-    site.music;
+  const { eyebrow, title, subtitle, tracks } = site.music;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -46,14 +39,6 @@ export default function Music() {
         stagger: 0.1,
         ease: "glass",
         scrollTrigger: { trigger: root.current, start: "top 78%" },
-      });
-
-      gsap.from("[data-playlist]", {
-        y: 48,
-        opacity: 0,
-        duration: 1,
-        ease: "glass",
-        scrollTrigger: { trigger: "[data-playlist]", start: "top 88%" },
       });
 
       ScrollTrigger.batch("[data-track]", {
@@ -103,59 +88,7 @@ export default function Music() {
         </p>
       </div>
 
-      {playlist.spotifyId && (
-        <div data-playlist data-anim className="mt-12 sm:mt-14">
-          <div
-            className="glass rounded-[1.5rem] p-3 sm:p-4"
-            style={{
-              boxShadow:
-                "inset 0 1px 0 0 rgb(255 255 255 / 0.3), inset 0 0 0 1px rgb(29 185 84 / 0.22), 0 20px 46px -22px rgb(1 5 14 / 0.9), 0 0 70px -26px rgb(29 185 84 / 0.6)",
-            }}
-          >
-            <div className="relative z-[3]">
-              <div className="flex items-baseline justify-between gap-4 px-2 pb-3 pt-1">
-                <p className="eyebrow !text-spotify-bright">{playlist.label}</p>
-                <span
-                  aria-hidden
-                  className="font-mono text-[0.55rem] uppercase tracking-[0.25em] text-ice/30"
-                >
-                  Spotify
-                </span>
-              </div>
-
-              <div className="overflow-hidden rounded-[1rem] bg-[#121212]">
-                <iframe
-                  src={playlistUrl(playlist.spotifyId)}
-                  title="Playlist"
-                  loading="lazy"
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  style={{ background: "#121212", colorScheme: "dark" }}
-                  className="block h-[26rem] w-full border-0"
-                />
-              </div>
-
-              <p className="mt-4 flex gap-3 px-2 pb-1 text-sm leading-relaxed text-ice/70">
-                <span
-                  aria-hidden
-                  className="mt-1.5 h-4 w-[2px] shrink-0 rounded-full bg-spotify-bright"
-                />
-                {playlist.note}
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {tracksLabel && tracks.length > 0 && (
-        <p
-          data-anim
-          className="eyebrow mt-14 !text-spotify-bright sm:mt-16"
-        >
-          {tracksLabel}
-        </p>
-      )}
-
-      <ul className="mt-6 flex flex-col gap-5">
+      <ul className="mt-12 flex flex-col gap-5 sm:mt-14">
         {tracks.map((track, i) => (
           <li key={track.youtubeId ?? track.spotifyId ?? i} data-track data-anim>
             <div
