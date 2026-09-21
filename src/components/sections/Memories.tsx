@@ -66,7 +66,7 @@ export default function Memories() {
           const tilt = TILTS[i % TILTS.length];
           return (
             <figure
-              key={memory.text}
+              key={memory.title}
               data-memory
               data-anim
               data-tilt={tilt}
@@ -89,9 +89,20 @@ export default function Memories() {
                 className="relative z-[3] mb-4 block h-px w-8 bg-cyan/50"
               />
 
-              <blockquote className="relative z-[3] display text-[1.2rem] leading-[1.45] text-frost/90 sm:text-[1.35rem]">
-                {memory.text}
-              </blockquote>
+              <h3 className="relative z-[3] display text-[1.35rem] leading-tight text-frost sm:text-[1.5rem]">
+                {memory.title}
+              </h3>
+
+              <div className="relative z-[3] mt-4 flex flex-col gap-3">
+                {memory.paragraphs.map((paragraph) => (
+                  <p
+                    key={paragraph}
+                    className="text-sm leading-relaxed text-ice/70"
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
 
               <figcaption className="relative z-[3] mt-5 font-mono text-[0.55rem] uppercase tracking-[0.25em] text-ice/30">
                 {String(i + 1).padStart(2, "0")} · remembered

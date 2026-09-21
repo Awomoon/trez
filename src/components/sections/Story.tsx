@@ -120,9 +120,16 @@ export default function Story() {
                   <h3 className="display text-[1.75rem] text-frost sm:text-3xl">
                     {chapter.title}
                   </h3>
-                  <p className="text-sm leading-relaxed text-ice/65 sm:text-base">
-                    {chapter.body}
-                  </p>
+                  <div className="flex flex-col gap-3">
+                    {chapter.paragraphs.map((paragraph) => (
+                      <p
+                        key={paragraph}
+                        className="text-sm leading-relaxed text-ice/65"
+                      >
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
                 </div>
               </GlassPanel>
             </div>

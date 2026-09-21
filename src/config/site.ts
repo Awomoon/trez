@@ -53,29 +53,36 @@ export const site = {
   /** Reason cards. Add or remove freely; the grid adapts. */
   reasons: [
     {
-      title: "Your laugh",
-      body: "It arrives before the punchline and stays in the room long after. I have caught myself saying things just to hear it again.",
-      emoji: "🎧",
+      title: "Your laugh 😭✨",
+      paragraphs: [
+        "So thin and cute, just like your voice. 😭 Even though you sometimes go completely mute the moment you’re laughing too hard, I really love how thin your laugh sounds. It genuinely makes me happy hearing you laugh. 😭💕",
+      ],
     },
     {
-      title: "Your mind",
-      body: "You actually want to know people. Not the surface of them. The whole thing. You ask the question after the question, you listen to the answer, and you remember it months later.",
-      emoji: "💭",
+      title: "Your mind 💭",
+      paragraphs: [
+        "You notice the smallest things. Sometimes I’ll tell you something and wonder how you even noticed it in the first place. I really like that about you. You pay attention to things that most people would probably miss, and I think that’s really special. 💭✨",
+      ],
     },
     {
-      title: "Your kindness",
-      body: "It is never loud and never for show. It just shows up, quietly, exactly when someone needs it most.",
-      emoji: "💙",
+      title: "Your kindness 💕✨",
+      paragraphs: [
+        "You’re kind, but not everyone gets to see that side of you. It’s so quiet. You don’t always make a big deal out of it, it just shows up exactly when someone needs it the most. And I really love that about you. 💕",
+      ],
     },
     {
-      title: "Your stubbornness",
-      body: "Yes, this is a compliment. You decide something is worth it and then simply refuse to let the world talk you out of it.",
-      emoji: "⚡",
+      title: "Your stubbornness 😭😭",
+      paragraphs: [
+        "The way you purposely disagree with something just because you’re “wicked” and you don’t want “la Peace” but “la War.” 😭😭",
+        "I genuinely don’t know how you manage to argue about things just for the fun of arguing, but somehow it’s still one of the things I love about you. 😭",
+      ],
     },
     {
-      title: "Your everything",
-      body: "There is no clean way to finish this list, so I will just say it plainly: it is you. All of it is you.",
-      emoji: "✨",
+      title: "Your everything 💕✨",
+      paragraphs: [
+        "Honestly, these are only a few of the things I can talk about. Because if I actually went on and on about everything I love about you, I’d probably run out of words before I even got halfway through.",
+        "Everything about you is something I’d be proud to know, proud to love, and proud to have in my life. 💕✨",
+      ],
     },
   ],
 
@@ -83,23 +90,40 @@ export const site = {
   timeline: [
     {
       chapter: "01",
-      title: "A comment under a TikTok",
-      body: "That’s honestly how it started. One comment, the kind you scroll past a thousand times without thinking twice. Neither of us had any idea what it was going to turn into.",
+      title: "The Comment 💕😭",
+      paragraphs: [
+        "Funny how a comment on your post started all of this.",
+        "Out of all the things I could’ve said, somehow that comment became one of the most important comments I’ve ever made. 😭💕",
+        "I still think it was the best comment.",
+      ],
     },
     {
       chapter: "02",
-      title: "The first real conversation",
-      body: "The one that ran far too late and ended far too early, and rearranged something quietly in me.",
+      title: "The First Conversation 😭💕",
+      paragraphs: [
+        "Funny how I messaged you thinking you were a guy, and then I got nervous the moment I found out you were a girl. 😭💕",
+        "I still laugh thinking about it.",
+        "I’m just glad I didn’t stop talking to you.",
+      ],
     },
     {
       chapter: "03",
-      title: "The ordinary days",
-      body: "No occasion, no plan. Just you, being you, somewhere near me. Still my favourite genre of day.",
+      title: "The Ordinary Days 💕✨",
+      paragraphs: [
+        "I remember being worried sometimes that we’d have nothing to talk about.",
+        "But somehow you made me realise that we didn’t always need some big conversation or something exciting happening.",
+        "Sometimes just being there with each other was enough.",
+        "The ordinary days became some of my favourite ones. 💕✨",
+      ],
     },
     {
       chapter: "04",
-      title: "Every day after this one",
-      body: "Unwritten on purpose. I would like to fill it in with you, slowly, for a very long time.",
+      title: "Every Day After This One 💕✨",
+      paragraphs: [
+        "Nothing to write here yet.",
+        "I want to fill this part with you, slowly, one day at a time.",
+        "There’s still so much that hasn’t been written yet. 💕✨",
+      ],
     },
   ],
 
@@ -140,30 +164,58 @@ export const site = {
   /* ---------------------------------------------------------------------- */
   memories: [
     {
-      text: "I remember the Spotify jams that ran way too late. Both of us going quiet, both of us falling asleep with it still playing. 🎧",
+      title: "The Spotify mornings 🎧😭",
+      paragraphs: [
+        "I remember how we’d sometimes wake up in the morning apologising for sleeping off while we were on a jam on Spotify. 😭🎧",
+        "Like somehow we’d both just disappear mid-jam and wake up later like, “I’m sorry, I slept off.” 😭",
+      ],
       photo: null,
     },
     {
-      text: "I remember how we prank each other out of nowhere. No reason, no warning, just because you were there and I was bored.",
+      title: "Random names 😭😭",
+      paragraphs: [
+        "I remember how we’d just randomly call each other names and make fun of each other whenever we were bored.",
+        "Mostly because we had each other and apparently that was enough entertainment. Fish. 😭😭",
+      ],
       photo: null,
     },
     {
-      text: "I remember the days we would comfort each other over absolutely nothing. Nothing was wrong. We did it anyway.",
+      title: "Comforting each other 😗✨",
+      paragraphs: [
+        "I remember the times we’d just comfort each other even though nothing might actually be wrong.",
+        "We’d still somehow find a reason to make sure the other person was okay. 😗✨",
+      ],
       photo: null,
     },
     {
-      text: "I remember the first night you sent me a picture of you before bed. I’ve thought about that one more than I should probably admit. 🌙",
+      title: "Hearing my name 😭💕",
+      paragraphs: [
+        "I remember the days when I’d be blushing just because of the way you called my name on calls. 😭💕",
+        "I don’t even know why it affected me that much, but it did. 😭",
+      ],
       photo: null,
     },
     {
-      text: "I remember how nervous I got the first time you told me about your cramps. I genuinely didn’t know what to do with myself.",
+      title: "The cramps panic 😭😭",
+      paragraphs: [
+        "I remember how nervous I was when I heard about your cramps because I genuinely had no idea what I was supposed to do. 😭😭",
+        "I was probably more confused than helpful, but I really wanted you to be okay.",
+      ],
       photo: null,
     },
     {
-      text: "I remember how loud you got when we finally won our first Call of Duty battle royale. I can still hear it. 🎮",
+      title: "Our first Battle Royale win 🎮😭",
+      paragraphs: [
+        "I remember how excited you were after our first Call of Duty Battle Royale win. 😭🎮",
+        "It was just a game, but seeing how happy you were made the whole thing feel so much more special.",
+      ],
       photo: null,
     },
-  ] as ReadonlyArray<{ text: string; photo: string | null }>,
+  ] as ReadonlyArray<{
+    title: string;
+    paragraphs: ReadonlyArray<string>;
+    photo: string | null;
+  }>,
 
   /* ---------------------------------------------------------------------- */
   /*  BIRTHDAY TIME CAPSULE                                                  */
