@@ -121,9 +121,21 @@ export default function Footer() {
               }}
             >
               <div className="relative z-[3]">
+                {surprise.pair.label.length > 0 && (
+                  <p
+                    data-gift-line
+                    /* Tinted like the card's rim, the way the playlist's
+                       label is tinted green. */
+                    className="eyebrow px-2 pb-1 pt-1"
+                    style={{ color: "rgb(93 169 255)" }}
+                  >
+                    {surprise.pair.label}
+                  </p>
+                )}
+
                 <p
                   data-gift-line
-                  className="display px-2 pb-1 pt-1 text-[1.5rem] text-frost sm:text-[1.75rem]"
+                  className="display px-2 pb-1 text-[1.5rem] text-frost sm:text-[1.75rem]"
                 >
                   {surprise.pair.title}
                 </p>
