@@ -78,6 +78,12 @@ export const site = {
       ],
     },
     {
+      title: "Your Little Chef Side 👩🏽‍🍳✨",
+      paragraphs: [
+        "I haven’t even had the chance to taste your food yet 😭, but I’ve seen the different things you make and honestly, I’m proud of you. You can make so many different kinds of food and somehow they always look so good. One day I’m definitely going to have to taste them for myself though 😭😂. Until then, I’ll just keep being proud of my little chef from a distance. ❤️",
+      ],
+    },
+    {
       title: "Your everything 💕✨",
       paragraphs: [
         "Honestly, these are only a few of the things I can talk about. Because if I actually went on and on about everything I love about you, I’d probably run out of words before I even got halfway through.",
