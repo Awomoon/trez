@@ -6,6 +6,28 @@ import { site } from "@/config/site";
 import GlassPanel from "@/components/ui/GlassPanel";
 
 /**
+ * Letter paragraphs are plain strings, with one exception: **double
+ * asterisks** mark a line he wants set apart. Anything inside a pair is
+ * lifted to the brightest ink so the eye lands on it, without changing the
+ * face or the size, which would break the run of the paragraph.
+ *
+ * Split with a capturing group, so the odd entries are the emphasised runs.
+ */
+function withEmphasis(text: string) {
+  return text
+    .split(/\*\*(.+?)\*\*/g)
+    .map((part, i) =>
+      i % 2 === 0 ? (
+        part
+      ) : (
+        <strong key={i} className="font-medium text-frost">
+          {part}
+        </strong>
+      ),
+    );
+}
+
+/**
  * The letter. Body text resolves word by word as it scrolls through the
  * viewport — dim words sharpen into focus, so reading it feels like it is
  * being written rather than simply appearing.
@@ -119,7 +141,7 @@ export default function Letter() {
                 data-letter-paragraph
                 className="text-[0.95rem] leading-[1.85] text-ice/80 sm:text-base"
               >
-                {paragraph}
+                {withEmphasis(paragraph)}
               </p>
             ))}
           </div>

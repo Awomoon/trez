@@ -141,11 +141,12 @@ export const site = {
   letter: {
     greeting: "Happy birthday, Treasure. \u2764\uFE0F",
     paragraphs: [
-      "There are so many things I could say about you, and I still don\u2019t think I\u2019d ever find the right words to explain how much you mean to me.",
-      "You\u2019re one of the sweetest people I\u2019ve had the privilege of knowing. You have such a gentle heart and a kindness that I don\u2019t think you always realize you carry. I love the way you care about the people you love, the way you try even when things aren\u2019t easy, and all the little things that make you who you are.",
-      "Thank you for every conversation, every random laugh, every late night, every \u201Care you okay?\u201D, and every little moment we shared. Some of my favorite memories are the simplest ones just talking, laughing, and knowing you were there.",
-      "Meeting you has been one of the most meaningful parts of my life, and I\u2019ll always be grateful for the memories we made.",
-      "I hope you never forget how appreciated you are, and I hope this new year brings you beautiful things.",
+      "There are so many things I could say about you, and I still don’t think I’d ever find the right words to explain how much you mean to me.",
+      "You’re one of the sweetest people I’ve had the privilege of knowing. You have such a gentle heart and a kindness that I don’t think you always realize you carry. I love the way you care about the people you love, the way you try even when things aren’t easy, and all the little things that make you who you are.",
+      "Thank you for every conversation, every random laugh, every late night, every “are you okay?”, and every little moment we shared. Some of my favorite memories are the simplest ones just talking, laughing, and knowing you were there.",
+      "Meeting you has been one of the most meaningful parts of my life, and I’ll always be grateful for the memories we made.",
+      "There’s a saying I came across that reminded me of you: **“I wasn’t scared of anything until I met you.”** And I think I understand what it means now. Not that you ever gave me something to be afraid of, but that meeting someone who means so much to you also means having someone you genuinely care about losing. And I think that’s what makes certain people so special.",
+      "I hope you never forget how appreciated you are, and I hope this new year brings you beautiful things. I hope you get to experience more happiness, more laughter, more moments that make you proud of yourself, and everything good that you deserve.",
       "Thank you for being you.",
       "And most of all, thank you for existing.",
     ],
