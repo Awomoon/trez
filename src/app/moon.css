@@ -6,10 +6,17 @@
 /*  on every build. The two tiles are different sizes so they slide past each */
 /*  other instead of repeating as an obvious grid.                            */
 /* ========================================================================== */
+.moon-field {
+  /* The knob worth reaching for later: how big the moon is. How hard it
+     glows is per stop, over in MoonSky. */
+  --moon-size: clamp(6rem, 12vw, 11rem);
+}
+
 .moon-stars-fine,
 .moon-stars-bright {
   position: absolute;
   inset: -10%;
+  will-change: transform;
 }
 
 .moon-stars-fine {
@@ -124,80 +131,112 @@
   50% { opacity: 0.5; }
 }
 
-/* The moon: a disc, a long soft halo, and two craters that only just show. */
-.moon-disc {
+/* ========================================================================== */
+/*  THE MOON                                                                  */
+/*                                                                            */
+/*  Three nested elements, so three animations can run at once without        */
+/*  fighting over one transform:                                              */
+/*                                                                            */
+/*    .moon-travel   the scroll journey     (GSAP, scrubbed)                  */
+/*    .moon-float    the idle drift          (GSAP, endless)                  */
+/*    .moon-body     the disc and its halo   (static)                         */
+/*                                                                            */
+/*  Everything that moves is a transform or an opacity. Nothing here animates */
+/*  top, left, width or height, so none of it touches layout.                 */
+/* ========================================================================== */
+.moon-travel {
   position: absolute;
-  top: clamp(2.5rem, 9vh, 7rem);
-  right: clamp(1.75rem, 9vw, 9rem);
-  width: clamp(5rem, 11vw, 9rem);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at 34% 30%,
-    #ffffff 0%,
-    #eef0f8 42%,
-    #c7cbdd 78%,
-    #a9aec6 100%
-  );
-  box-shadow:
-    0 0 3rem -0.4rem rgb(var(--c-glow) / 0.55),
-    0 0 9rem 1rem rgb(var(--c-glow) / 0.22),
-    0 0 20rem 5rem rgb(var(--c-accent) / 0.16);
-  animation: moon-breathe 12s ease-in-out infinite;
+  top: 50%;
+  left: 50%;
+  width: var(--moon-size);
+  height: var(--moon-size);
+  margin-top: calc(var(--moon-size) / -2);
+  margin-left: calc(var(--moon-size) / -2);
+  will-change: transform;
 }
 
-.moon-disc::before,
+.moon-float {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.moon-body {
+  position: absolute;
+  inset: 0;
+}
+
+/* The glow is a plain radial gradient, not a blur or a drop-shadow. A filter
+   on something this large, moving every frame, is what makes a mid range
+   phone drop frames. It travels with the moon because it is inside it.
+   
+   Two nested elements again, and for the same reason as the transforms: the
+   scroll timeline fades .moon-glow while the endless pulse fades .moon-halo,
+   and nested opacities multiply instead of overwriting each other.
+   
+   The gradient itself never changes. An earlier version drove its alphas
+   from a custom property, which looked identical and repainted a very large
+   element on every single frame; opacity alone is handled by the compositor
+   and costs nothing to animate. */
+.moon-glow {
+  position: absolute;
+  inset: 0;
+  will-change: opacity;
+}
+
+.moon-halo {
+  position: absolute;
+  inset: -170%;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    rgb(var(--c-glow) / 0.26) 0%,
+    rgb(var(--c-glow) / 0.1) 34%,
+    rgb(var(--c-accent) / 0.05) 56%,
+    transparent 72%
+  );
+  animation: moon-pulse 9s ease-in-out infinite;
+}
+
+.moon-disc {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* A rim of light so the disc has an edge rather than just stopping. */
 .moon-disc::after {
   content: "";
   position: absolute;
+  inset: 0;
   border-radius: 50%;
-  background: rgb(96 102 130 / 0.30);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.32),
+    inset -6% -6% 18% -4% rgb(var(--c-ink) / 0.5);
 }
 
-.moon-disc::before {
-  width: 22%;
-  aspect-ratio: 1;
-  top: 26%;
-  left: 24%;
-}
-
-.moon-disc::after {
-  width: 13%;
-  aspect-ratio: 1;
-  top: 56%;
-  left: 55%;
-}
-
-@keyframes moon-breathe {
-  0%, 100% { filter: brightness(1); }
-  50% { filter: brightness(1.08); }
-}
-
-/* On a phone the content column is the whole screen, so a moon this size
-   parks itself on top of a card and reads as a smudge rather than a moon.
-   Shrunk and tucked into the corner it stays a moon. */
-@media (max-width: 640px) {
-  .moon-disc {
-    top: 1.1rem;
-    right: 1rem;
-    width: 3.25rem;
-    opacity: 0.82;
-    box-shadow:
-      0 0 1.75rem -0.3rem rgb(var(--c-glow) / 0.5),
-      0 0 5rem 0.5rem rgb(var(--c-glow) / 0.18),
-      0 0 12rem 3rem rgb(var(--c-accent) / 0.14);
+@keyframes moon-pulse {
+  0%,
+  100% {
+    opacity: 0.88;
+  }
+  50% {
+    opacity: 1;
   }
 }
 
-/* The light the moon throws across the top of the page. */
+/* The faint light the moon throws over the page as a whole. Its strength is
+   driven by scroll, on its opacity, in step with the glow. */
 .moon-wash {
   position: absolute;
   inset: 0;
+  will-change: opacity;
   background: radial-gradient(
-    70% 48% at 78% 4%,
-    rgb(var(--c-glow) / 0.13) 0%,
-    rgb(var(--c-accent) / 0.07) 38%,
-    transparent 72%
+    75% 55% at 70% 10%,
+    rgb(var(--c-glow) / 0.1) 0%,
+    rgb(var(--c-accent) / 0.05) 40%,
+    transparent 74%
   );
 }
 
@@ -218,4 +257,40 @@
   border-radius: 50%;
   background: rgb(var(--c-glow) / 0.85);
   box-shadow: 0 0 10px 1px rgb(var(--c-glow) / 0.5);
+}
+
+/* ========================================================================== */
+/*  ON A PHONE                                                                */
+/*                                                                            */
+/*  Not the desktop sky shrunk. A phone screen is almost entirely content     */
+/*  column, so the moon is smaller and the journey (in MoonSky) keeps it near */
+/*  the edges, where it reads as sky rather than as something sitting on the  */
+/*  words. The star field is thinned by tiling it larger, which costs nothing */
+/*  at runtime: same gradients, fewer of them on screen.                      */
+/* ========================================================================== */
+@media (max-width: 640px) {
+  .moon-field {
+    --moon-size: clamp(3.75rem, 17vw, 5.5rem);
+  }
+
+  .moon-stars-fine {
+    background-size: 440px 440px;
+  }
+
+  .moon-stars-bright {
+    background-size: 700px 700px;
+  }
+
+  /* The halo is the one thing that would cover a phone's whole screen, so
+     it is pulled in and softened. */
+  .moon-halo {
+    inset: -130%;
+  }
+}
+
+/* Coarse pointers that are not phones (tablets) get the middle ground. */
+@media (min-width: 641px) and (max-width: 900px) {
+  .moon-field {
+    --moon-size: clamp(5rem, 11vw, 7.5rem);
+  }
 }
