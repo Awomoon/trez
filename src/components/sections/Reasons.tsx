@@ -1,87 +1,21 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { site } from "@/config/site";
-import GlassPanel from "@/components/ui/GlassPanel";
-import SectionHeading from "@/components/ui/SectionHeading";
+import MoonOrbit from "@/components/sections/MoonOrbit";
 
 /**
- * A grid of glass cards. `ScrollTrigger.batch` groups whatever enters the
- * viewport in the same frame, so cards animate in natural clusters instead of
- * one long mechanical stagger.
+ * The reasons, orbiting the moon. The words, the order and the heading are
+ * unchanged; only the way they are presented is. MoonOrbit holds all of the
+ * motion, and falls back to a plain grid under prefers-reduced-motion.
  */
 export default function Reasons() {
-  const root = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.set("[data-anim]", { visibility: "visible" });
-      gsap.set("[data-reason]", { opacity: 0, y: 64, scale: 0.94 });
-
-      ScrollTrigger.batch("[data-reason]", {
-        start: "top 88%",
-        onEnter: (batch) =>
-          gsap.to(batch, {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 1.1,
-            stagger: 0.1,
-            ease: "glass",
-            overwrite: true,
-          }),
-      });
-    }, root);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section
+    <MoonOrbit
       id="reasons"
-      ref={root}
-      className="relative mx-auto w-full max-w-6xl px-5 py-24 sm:py-32"
-    >
-      <SectionHeading
-        eyebrow={`${site.reasons.length} of many`}
-        title="Things about you I would defend in court"
-      />
-
-      <ul className="mt-14 grid gap-4 sm:mt-20 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
-        {site.reasons.map((reason, i) => (
-          <li key={reason.title} data-reason data-anim className="h-full">
-            <GlassPanel
-              as="article"
-              interactive
-              className="group flex h-full flex-col gap-4 rounded-[1.75rem] p-7 sm:p-8"
-            >
-              {/* The emoji live inside the titles now, so the old badge in
-                  this row would only repeat them. */}
-              <div className="flex justify-end">
-                <span className="font-mono text-[0.6rem] tracking-[0.25em] text-ice/35">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </div>
-
-              <h3 className="display text-2xl text-frost sm:text-[1.75rem]">
-                {reason.title}
-              </h3>
-
-              <div className="flex flex-col gap-3">
-                {reason.paragraphs.map((paragraph) => (
-                  <p
-                    key={paragraph}
-                    className="text-sm leading-relaxed text-ice/65"
-                  >
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-            </GlassPanel>
-          </li>
-        ))}
-      </ul>
-    </section>
+      eyebrow={`${site.reasons.length} of many`}
+      title="Things about you I would defend in court"
+      cards={site.reasons}
+      cardLabel="of many"
+    />
   );
 }
