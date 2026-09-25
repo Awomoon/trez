@@ -294,3 +294,90 @@
     --moon-size: clamp(5rem, 11vw, 7.5rem);
   }
 }
+
+/* ========================================================================== */
+/*  THE ORBIT                                                                 */
+/*                                                                            */
+/*  Cards going around the moon. Sizes here, motion in MoonOrbit.             */
+/* ========================================================================== */
+.orbit-ring {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.orbit-moon {
+  width: var(--orbit-moon, clamp(9rem, 21vw, 17rem));
+  aspect-ratio: 1;
+  margin-left: calc(var(--orbit-moon, clamp(9rem, 21vw, 17rem)) / -2);
+  margin-top: calc(var(--orbit-moon, clamp(9rem, 21vw, 17rem)) / -2);
+  will-change: transform;
+}
+
+/* Glow as a gradient rather than a filter, for the same reason as the sky's:
+   a blur this large repainting on every frame is what costs a phone its
+   frame rate. */
+.orbit-glow {
+  position: absolute;
+  inset: -80%;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    rgb(var(--c-glow) / 0.2) 0%,
+    rgb(var(--c-glow) / 0.08) 38%,
+    rgb(var(--c-accent) / 0.04) 60%,
+    transparent 74%
+  );
+  will-change: opacity;
+}
+
+/*
+ * An orbiting card passes right over the moon, and the sky glass is
+ * translucent enough that a lit disc behind it would wash the words out.
+ * So these get their own darker base: the same rim and blur as everything
+ * else on the site, over something solid enough to read against.
+ */
+.orbit-card {
+  width: min(21rem, 78vw);
+  margin-left: calc(min(21rem, 78vw) / -2);
+  margin-top: calc(min(21rem, 78vw) / -2.6);
+  background:
+    linear-gradient(
+      160deg,
+      rgb(var(--c-ink) / 0.82) 0%,
+      rgb(var(--c-ink) / 0.9) 100%
+    ),
+    linear-gradient(
+      145deg,
+      rgb(255 255 255 / 0.1) 0%,
+      rgb(255 255 255 / 0.03) 60%,
+      rgb(var(--c-glow) / 0.05) 100%
+    );
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.22),
+    inset 0 0 0 1px rgb(255 255 255 / 0.06),
+    0 20px 44px -22px rgb(var(--c-ink) / 0.95),
+    0 0 50px -28px rgb(var(--c-glow) / 0.5);
+  will-change: transform, opacity;
+}
+
+@media (max-width: 640px) {
+  .orbit-moon {
+    --orbit-moon: clamp(6.5rem, 32vw, 9.5rem);
+  }
+
+  .orbit-glow {
+    inset: -60%;
+  }
+
+  .orbit-card {
+    width: min(16rem, 70vw);
+    margin-left: calc(min(16rem, 70vw) / -2);
+    margin-top: calc(min(16rem, 70vw) / -2.2);
+    /* The stacked backdrop-filters of six overlapping cards are the one
+       real cost on a phone, so only the readable one keeps its blur. */
+    backdrop-filter: blur(8px) saturate(150%);
+    -webkit-backdrop-filter: blur(8px) saturate(150%);
+  }
+}
