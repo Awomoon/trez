@@ -417,6 +417,24 @@ export const site = {
     hint: "",
   },
 
+  /* ---------------------------------------------------------------------- */
+  /*  THE MOMENT                                                             */
+  /*  A short video, sitting just before the letter. Leave `src` empty and    */
+  /*  the whole section disappears.                                          */
+  /* ---------------------------------------------------------------------- */
+  moment: {
+    src: "/moment.mp4",
+    /** Read out to anyone who cannot see it. */
+    alt: "A short video for her",
+    /** Its real dimensions, so the space is held before it loads. */
+    width: 780,
+    height: 576,
+    /** Appears once the video has played through. */
+    caption: "and I want to spend the rest of my life with you",
+    /** Smaller, underneath. Empty it to show nothing. */
+    note: "some things are easier to feel than to say.",
+  },
+
   /** Final send-off. */
   closing: {
     title: "Make a wish",

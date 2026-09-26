@@ -31,6 +31,7 @@ import Gallery from "@/components/sections/Gallery";
 import Music from "@/components/sections/Music";
 import Cake from "@/components/sections/Cake";
 import TimeCapsule from "@/components/sections/TimeCapsule";
+import Moment from "@/components/sections/Moment";
 import Letter from "@/components/sections/Letter";
 import Outro from "@/components/sections/Outro";
 import Footer from "@/components/sections/Footer";
@@ -129,6 +130,7 @@ export default function Page() {
             <Music />
             <Cake />
             <TimeCapsule />
+            <Moment />
             <Letter />
             <Outro />
             <Footer />
