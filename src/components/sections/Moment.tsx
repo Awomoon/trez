@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger, prefersReducedMotion } from "@/lib/gsap";
 import { site } from "@/config/site";
 import { asset } from "@/lib/asset";
+import VideoPlayer from "@/components/ui/VideoPlayer";
 
 /**
  * The video, sitting between the capsule and the letter.
@@ -20,21 +21,24 @@ import { asset } from "@/lib/asset";
  */
 export default function Moment() {
   const root = useRef<HTMLElement>(null);
-  const video = useRef<HTMLVideoElement>(null);
   const [revealed, setRevealed] = useState(false);
 
   const { moment } = site;
 
-  /* Reveal once, from whichever of the three happens first. */
+  /* Reveal once, from whichever of the three happens first. `revealSoon`
+     waits a beat so the last frame and the controls can settle before the
+     line arrives, rather than it landing on the same tick as the ending. */
+  const revealSoon = useCallback(() => {
+    if (revealed) return;
+    window.setTimeout(() => setRevealed(true), 700);
+  }, [revealed]);
+
   useEffect(() => {
     if (revealed) return;
-    const el = video.current;
     const scope = root.current;
     if (!scope) return;
 
     const reveal = () => setRevealed(true);
-
-    el?.addEventListener("ended", reveal);
 
     /* The fallback timer only starts once the section is actually on
        screen, so it cannot fire while she is still somewhere up the page. */
@@ -44,8 +48,7 @@ export default function Moment() {
       start: "top 70%",
       end: "bottom 30%",
       onEnter: () => {
-        const wait = ((el?.duration || 8) + 6) * 1000;
-        timer = window.setTimeout(reveal, wait);
+        timer = window.setTimeout(reveal, 15000);
       },
       /* Scrolled past it: she has had her chance to press play. */
       onLeave: reveal,
@@ -53,7 +56,6 @@ export default function Moment() {
     });
 
     return () => {
-      el?.removeEventListener("ended", reveal);
       window.clearTimeout(timer);
       onScreen.kill();
     };
@@ -101,19 +103,14 @@ export default function Moment() {
         />
 
         <div className="glass rounded-[1.75rem] p-2.5 sm:p-3">
-          <div className="relative z-[3] overflow-hidden rounded-[1.35rem] bg-black">
-            <video
-              ref={video}
-              controls
-              playsInline
-              preload="metadata"
-              /* No autoplay, so nothing ever starts making noise at her. */
-              className="block h-auto w-full"
-              style={{ aspectRatio: `${moment.width} / ${moment.height}` }}
-              aria-label={moment.alt}
-            >
-              <source src={asset(moment.src)} type="video/mp4" />
-            </video>
+          <div className="relative z-[3]">
+            <VideoPlayer
+              src={asset(moment.src)}
+              width={moment.width}
+              height={moment.height}
+              label={moment.alt}
+              onEnded={revealSoon}
+            />
           </div>
         </div>
 

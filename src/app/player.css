@@ -1,0 +1,168 @@
+/* ========================================================================== */
+/*  THE PLAYER                                                                */
+/*                                                                            */
+/*  Same language as the glass everywhere else: dark translucent surfaces, a  */
+/*  hairline rim, a little moonlight. Nothing here animates on its own.       */
+/* ========================================================================== */
+
+/* Letterboxed rather than stretched when it goes full screen. */
+.player:fullscreen {
+  aspect-ratio: auto !important;
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+  background: #000;
+}
+
+.player:focus-visible {
+  outline: 2px solid rgb(var(--c-glow) / 0.8);
+  outline-offset: 3px;
+}
+
+/* ---- The circle in the middle ---- */
+.player-orb {
+  background: rgb(var(--c-ink) / 0.5);
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.26),
+    inset 0 0 0 1px rgb(255 255 255 / 0.1),
+    0 10px 30px -12px rgb(var(--c-ink) / 0.9),
+    0 0 34px -14px rgb(var(--c-glow) / 0.55);
+}
+
+.player-orb:hover,
+.player-orb:focus-visible {
+  transform: scale(1.05);
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.34),
+    inset 0 0 0 1px rgb(255 255 255 / 0.14),
+    0 12px 34px -12px rgb(var(--c-ink) / 0.9),
+    0 0 46px -12px rgb(var(--c-glow) / 0.75);
+}
+
+.player-orb:focus-visible {
+  outline: 2px solid rgb(var(--c-glow) / 0.85);
+  outline-offset: 4px;
+}
+
+/* ---- The small ones ---- */
+@utility player-btn {
+  display: grid;
+  place-items: center;
+  /* Comfortably tappable while the icon inside stays small. */
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  color: rgb(var(--c-glow) / 0.85);
+  background: rgb(255 255 255 / 0.05);
+  transition:
+    transform 0.25s var(--ease-glass),
+    background 0.25s var(--ease-glass),
+    color 0.25s var(--ease-glass);
+
+  &:hover,
+  &:focus-visible {
+    transform: scale(1.06);
+    background: rgb(255 255 255 / 0.12);
+    color: rgb(255 255 255 / 0.95);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgb(var(--c-glow) / 0.85);
+    outline-offset: 2px;
+  }
+}
+
+/* ========================================================================== */
+/*  THE TWO SLIDERS                                                           */
+/*                                                                            */
+/*  Native range inputs, because drag, touch, keyboard and ARIA all come      */
+/*  free with them and none of that is worth rewriting. The visible track is  */
+/*  a hairline; the input around it is tall enough to hit with a thumb.       */
+/*  --played is set from React and fills the track up to the handle.          */
+/* ========================================================================== */
+.player-range {
+  -webkit-appearance: none;
+  appearance: none;
+  /* No `display` here. This file loads after Tailwind, so a display set on
+     this class beat the `hidden` utility and the volume slider showed up on
+     phones, where it is meant to be off. The seek bar sets its own below. */
+  height: 1.25rem;
+  background: transparent;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.player-range::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    rgb(var(--c-glow) / 0.9) 0%,
+    rgb(var(--c-glow) / 0.9) var(--played, 0%),
+    rgb(255 255 255 / 0.18) var(--played, 0%),
+    rgb(255 255 255 / 0.18) 100%
+  );
+}
+
+.player-range::-moz-range-track {
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    rgb(var(--c-glow) / 0.9) 0%,
+    rgb(var(--c-glow) / 0.9) var(--played, 0%),
+    rgb(255 255 255 / 0.18) var(--played, 0%),
+    rgb(255 255 255 / 0.18) 100%
+  );
+}
+
+.player-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 11px;
+  height: 11px;
+  margin-top: -4px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 10px 1px rgb(var(--c-glow) / 0.8);
+  transition: transform 0.2s var(--ease-glass);
+}
+
+.player-range::-moz-range-thumb {
+  width: 11px;
+  height: 11px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 10px 1px rgb(var(--c-glow) / 0.8);
+}
+
+.player-range:hover::-webkit-slider-thumb,
+.player-range:active::-webkit-slider-thumb {
+  transform: scale(1.18);
+}
+
+.player-range:focus-visible {
+  outline: 2px solid rgb(var(--c-glow) / 0.85);
+  outline-offset: 3px;
+  border-radius: 999px;
+}
+
+.player-seek {
+  display: block;
+}
+
+/* Touch screens: a fatter invisible hit area on the seek bar, and buttons
+   at the 44px the guidelines ask for, with the icons left as they are. */
+@media (pointer: coarse) {
+  .player-seek {
+    height: 2rem;
+  }
+
+  .player-btn {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
